@@ -9,10 +9,6 @@
   overflow: hidden;
   background: radial-gradient(circle at 30% 20%, $verde-medio 0%, $verde-oscuro 60%);
 
-  // En celular el texto ocupa menos alto (sobre todo ahora que "Nueva York"
-  // no se corta a la mitad), y centrarlo dentro de una caja de 88vh dejaba
-  // demasiado aire arriba. Achicamos la caja para que se ajuste al
-  // contenido en vez de forzar esa altura fija.
   @media (max-width: $breakpoint-mobile) {
     min-height: auto;
     padding: 6rem 0 3.5rem;
@@ -66,13 +62,14 @@
   margin: 0 0 1.2rem;
   color: $crema;
 
-   span {
+  span {
     color: $cobre;
     font-family: $fuente-firma;
     text-transform: none;
     font-size: 1.15em;
     white-space: nowrap;
   }
+}
 
 .bajada {
   font-size: 1.15rem;
@@ -94,5 +91,4 @@
 
 .botonSecundario {
   @include boton-secundario;
-}
 }
