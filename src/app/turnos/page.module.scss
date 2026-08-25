@@ -1,0 +1,50 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.seccion {
+  @include seccion;
+  min-height: 70vh;
+  background: $verde-oscuro;
+}
+
+.contenedor {
+  @include contenedor;
+  max-width: 720px;
+  text-align: center;
+}
+
+.eyebrow {
+  font-family: $fuente-titulo;
+  color: $cobre;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin-bottom: 0.6rem;
+}
+
+.contenedor h1 {
+  @include titulo-seccion;
+  margin: 0 0 1rem;
+}
+
+.bajada {
+  color: $gris-humo;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+
+.botonBorrar {
+  background: none;
+  border: 1px solid rgba(255, 139, 122, 0.4);
+  color: #ff9d84;
+  border-radius: 4px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    background: rgba(255, 139, 122, 0.1);
+    border-color: #ff9d84;
+  }
+}

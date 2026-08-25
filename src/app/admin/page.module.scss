@@ -1,0 +1,90 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.pagina {
+  @include contenedor;
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+}
+
+.pagina h1 {
+  @include titulo-seccion;
+  font-size: 2rem;
+  margin: 0 0 2rem;
+}
+
+.cargando {
+  color: $gris-humo;
+}
+
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tarjeta {
+  @include tarjeta;
+
+  h3 {
+    font-family: $fuente-titulo;
+    color: $cobre-claro;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+  }
+}
+
+.montoGrande {
+  font-size: 2.2rem;
+  color: $cobre;
+  font-weight: 600;
+  margin: 0 0 0.3rem;
+}
+
+.detalle {
+  color: $gris-humo;
+  font-size: 0.85rem;
+}
+
+.graficoCard {
+  @include tarjeta;
+  padding-bottom: 0.6rem;
+}
+
+.desglose {
+  margin-bottom: 2.5rem;
+
+  h2 {
+    font-family: $fuente-titulo;
+    letter-spacing: 0.04em;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: $crema;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 0.7rem 0.9rem;
+    border-bottom: 1px solid rgba(201, 138, 82, 0.15);
+    font-size: 0.9rem;
+  }
+
+  th {
+    color: $cobre-claro;
+    font-family: $fuente-titulo;
+    letter-spacing: 0.04em;
+    font-weight: 400;
+  }
+}

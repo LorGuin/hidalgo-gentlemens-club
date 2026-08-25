@@ -1,0 +1,109 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.pagina {
+  @include contenedor;
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+  max-width: 780px;
+}
+
+.pagina h1 {
+  @include titulo-seccion;
+  font-size: 2rem;
+  margin: 0 0 0.6rem;
+}
+
+.ayuda {
+  color: $gris-humo;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.form {
+  @include tarjeta;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.tablaHead {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 0.8rem;
+  padding: 0 0.2rem;
+  font-size: 0.78rem;
+  color: $cobre-claro;
+  font-family: $fuente-titulo;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  @media (max-width: $breakpoint-mobile) {
+    display: none;
+  }
+}
+
+.fila {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 0.8rem;
+  align-items: center;
+
+  @media (max-width: $breakpoint-mobile) {
+    grid-template-columns: 1fr;
+  }
+
+  input {
+    background: rgba(21, 24, 21, 0.6);
+    border: 1px solid rgba(201, 138, 82, 0.35);
+    border-radius: $radio-borde;
+    padding: 0.6rem 0.8rem;
+    color: $crema;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+      border-color: $cobre;
+    }
+  }
+}
+
+.botonBorrar {
+  background: none;
+  border: 1px solid rgba(255, 139, 122, 0.4);
+  color: #ff9d84;
+  border-radius: 4px;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    background: rgba(255, 139, 122, 0.1);
+    border-color: #ff9d84;
+  }
+}
+
+.acciones {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.8rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(201, 138, 82, 0.15);
+  flex-wrap: wrap;
+
+  button[type="submit"] {
+    @include boton-primario;
+  }
+}
+
+.botonAgregar {
+  @include boton-secundario;
+}
+
+.mensaje {
+  color: $cobre-claro;
+  font-size: 0.9rem;
+}

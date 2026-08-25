@@ -1,0 +1,103 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  // Fondo 100% opaco (antes era semi-transparente con blur) para que el
+  // menú hamburguesa y el resto de los íconos tengan siempre el mismo
+  // contraste, sin importar qué sección clara haya scrolleada detrás.
+  background: $verde-profundo;
+  border-bottom: 1px solid rgba(201, 138, 82, 0.25);
+}
+
+.contenedor {
+  @include contenedor;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  ul {
+    display: flex;
+    gap: 1.6rem;
+  }
+
+  a {
+    font-family: $fuente-titulo;
+    letter-spacing: 0.05em;
+    font-size: 0.95rem;
+    color: $crema;
+    transition: color $transicion;
+
+    &:hover {
+      color: $cobre;
+    }
+  }
+}
+
+.botonTurno {
+  @include boton-primario;
+  padding: 0.6rem 1.4rem !important;
+  font-size: 0.9rem !important;
+}
+
+.hamburguesa {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+
+  span {
+    width: 24px;
+    height: 2px;
+    background: $cobre;
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .nav {
+    // Antes esto llegaba hasta abajo de todo (bottom: 0), dejando un
+    // rectángulo oscuro enorme y vacío debajo de los links. Ahora se ajusta
+    // solo a lo que ocupan los links + el botón, y se ve la página detrás.
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
+    background: $verde-profundo;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 1.5rem 2.5rem;
+    gap: 1.5rem;
+    transform: translateX(100%);
+    transition: transform $transicion;
+    box-shadow: $sombra-suave;
+    border-bottom: 1px solid rgba(201, 138, 82, 0.25);
+
+    ul {
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+  }
+
+  .navAbierto {
+    transform: translateX(0);
+  }
+
+  .hamburguesa {
+    display: flex;
+  }
+}

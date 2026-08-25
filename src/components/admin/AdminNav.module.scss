@@ -1,0 +1,121 @@
+@use "@/styles/variables" as *;
+
+.nav {
+  background: $verde-profundo;
+  border-bottom: 1px solid rgba(201, 138, 82, 0.25);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.marca {
+  font-family: $fuente-titulo;
+  color: $cobre;
+  letter-spacing: 0.08em;
+}
+
+.links {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.links a {
+  font-size: 0.9rem;
+  color: $gris-humo;
+  padding: 0.4rem 0;
+  border-bottom: 2px solid transparent;
+
+  &:hover {
+    color: $crema;
+  }
+}
+
+.activo {
+  color: $cobre !important;
+  border-color: $cobre;
+}
+
+.salir {
+  background: none;
+  border: 1px solid rgba(201, 138, 82, 0.4);
+  color: $gris-humo;
+  padding: 0.4rem 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  white-space: nowrap;
+
+  &:hover {
+    color: $crema;
+    border-color: $cobre;
+  }
+}
+
+.hamburguesa {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+
+  span {
+    width: 22px;
+    height: 2px;
+    background: $cobre;
+  }
+}
+
+// En celular: "Panel Hidalgo" + ícono de menú + "Cerrar sesión" quedan en
+// una sola fila arriba, y los links se esconden en un desplegable que baja
+// al tocar el ícono, en vez de amontonarse o pedir scroll horizontal.
+@media (max-width: $breakpoint-tablet) {
+  .nav {
+    padding: 0.9rem 1rem;
+    gap: 0.8rem;
+  }
+
+  .marca {
+    order: 1;
+  }
+
+  .hamburguesa {
+    order: 2;
+    display: flex;
+    margin-left: auto;
+  }
+
+  .salir {
+    order: 3;
+  }
+
+  .links {
+    order: 4;
+    display: none;
+    flex-direction: column;
+    flex: 0 0 100%;
+    gap: 0;
+    margin: 0.4rem 0 0;
+    border-top: 1px solid rgba(201, 138, 82, 0.15);
+  }
+
+  .linksAbierto {
+    display: flex;
+  }
+
+  .links li {
+    width: 100%;
+  }
+
+  .links a {
+    display: block;
+    width: 100%;
+    padding: 0.85rem 0.2rem;
+    border-bottom: 1px solid rgba(201, 138, 82, 0.12);
+  }
+}

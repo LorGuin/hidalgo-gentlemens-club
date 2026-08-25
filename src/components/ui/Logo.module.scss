@@ -1,0 +1,46 @@
+@use "@/styles/variables" as *;
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: $crema;
+}
+
+.letraH {
+  font-family: $fuente-titulo;
+  font-size: 2.4rem;
+  color: $cobre;
+  line-height: 1;
+}
+
+.texto {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.firma {
+  font-family: $fuente-firma;
+  font-size: 1.6rem;
+  color: $crema;
+}
+
+.subtitulo {
+  font-family: $fuente-titulo;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  color: $cobre-claro;
+}
+
+.compacto {
+  .letraH {
+    font-size: 1.6rem;
+  }
+  .firma {
+    font-size: 1.1rem;
+  }
+  .subtitulo {
+    font-size: 0.55rem;
+  }
+}

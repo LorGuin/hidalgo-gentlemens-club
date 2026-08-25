@@ -1,0 +1,170 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.pagina {
+  @include contenedor;
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+  max-width: 640px;
+}
+
+.pagina h1 {
+  @include titulo-seccion;
+  font-size: 2rem;
+  margin: 0 0 0.6rem;
+}
+
+.ayuda {
+  color: $gris-humo;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.form {
+  @include tarjeta;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+
+  label {
+    font-size: 0.85rem;
+    color: $cobre-claro;
+  }
+
+  input,
+  select {
+    background: rgba(21, 24, 21, 0.6);
+    border: 1px solid rgba(201, 138, 82, 0.35);
+    border-radius: $radio-borde;
+    padding: 0.7rem 0.9rem;
+    color: $crema;
+
+    &:focus {
+      outline: none;
+      border-color: $cobre;
+    }
+  }
+}
+
+.fila {
+  display: flex;
+  gap: 1rem;
+}
+
+.acciones {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+
+  button {
+    flex: 1;
+  }
+}
+
+.acciones button:first-child {
+  @include boton-secundario;
+}
+
+.botonQr {
+  @include boton-primario;
+}
+
+.mensaje {
+  margin-top: 1.2rem;
+  color: $cobre-claro;
+}
+
+.qrBox {
+  @include tarjeta;
+  margin-top: 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+
+  img {
+    border-radius: $radio-borde;
+    background: $blanco;
+    padding: 0.6rem;
+  }
+
+  a {
+    color: $cobre;
+    border-bottom: 1px solid $cobre;
+  }
+}
+
+.nota {
+  color: $gris-humo;
+  font-size: 0.82rem;
+  max-width: 380px;
+}
+
+.marcarManual {
+  @include boton-secundario;
+  margin-top: 0.5rem;
+}
+
+.registro {
+  margin-top: 2.6rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid rgba(201, 138, 82, 0.15);
+
+  h2 {
+    font-family: $fuente-titulo;
+    letter-spacing: 0.04em;
+    font-size: 1.2rem;
+    margin: 0 0 0.4rem;
+  }
+}
+
+.ayudaChica {
+  color: $gris-humo;
+  font-size: 0.85rem;
+  margin-bottom: 1.2rem;
+}
+
+.tablaRegistro {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    text-align: left;
+    padding: 0.6rem 0.7rem;
+    border-bottom: 1px solid rgba(201, 138, 82, 0.12);
+    font-size: 0.85rem;
+  }
+
+  th {
+    color: $cobre-claro;
+    font-family: $fuente-titulo;
+    letter-spacing: 0.04em;
+    font-weight: 400;
+    font-size: 0.78rem;
+  }
+}
+
+.botonBorrar {
+  background: none;
+  border: 1px solid rgba(255, 139, 122, 0.4);
+  color: #ff9d84;
+  border-radius: 4px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(255, 139, 122, 0.1);
+    border-color: #ff9d84;
+  }
+}

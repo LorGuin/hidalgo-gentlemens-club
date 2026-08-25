@@ -1,0 +1,56 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.seccion {
+  @include seccion;
+  background: $verde-profundo;
+  text-align: center;
+}
+
+.contenedor {
+  @include contenedor;
+  max-width: 900px;
+}
+
+.eyebrow {
+  font-family: $fuente-titulo;
+  color: $cobre;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin-bottom: 0.8rem;
+}
+
+.contenedor h2 {
+  @include titulo-seccion;
+  margin: 0 0 1rem;
+}
+
+.bajada {
+  color: $gris-humo;
+  margin-bottom: 2.2rem;
+  line-height: 1.7;
+}
+
+.galeria {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.celda {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border: 2px solid $cobre;
+  border-radius: $radio-borde * 2;
+  overflow: hidden;
+  box-shadow: $sombra-suave;
+}
+
+.img {
+  object-fit: cover;
+}

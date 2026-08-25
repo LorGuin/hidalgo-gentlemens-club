@@ -1,0 +1,55 @@
+@use "@/styles/variables" as *;
+
+.contenedor {
+  width: 100%;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.base {
+  stroke: rgba(201, 138, 82, 0.2);
+  stroke-width: 1;
+}
+
+.barra {
+  fill: rgba(201, 138, 82, 0.55);
+  transition: fill 0.15s ease;
+}
+
+.barraActiva {
+  fill: $cobre;
+}
+
+.grupoBarra {
+  cursor: default;
+}
+
+.etiqueta {
+  fill: $gris-humo;
+  font-size: 9px;
+  font-family: $fuente-cuerpo;
+}
+
+.etiquetaHoy {
+  fill: $cobre-claro;
+  font-size: 9px;
+  font-weight: 600;
+  font-family: $fuente-cuerpo;
+}
+
+.tooltipFondo {
+  fill: $verde-profundo;
+  stroke: $cobre;
+  stroke-width: 1;
+}
+
+.tooltipTexto {
+  fill: $crema;
+  font-size: 10px;
+  font-family: $fuente-cuerpo;
+}

@@ -1,0 +1,100 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.pagina {
+  @include contenedor;
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+  max-width: 640px;
+}
+
+.pagina h1 {
+  @include titulo-seccion;
+  font-size: 2rem;
+  margin: 0 0 0.6rem;
+}
+
+.ayuda {
+  color: $gris-humo;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.tarjeta {
+  @include tarjeta;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  h2 {
+    font-family: $fuente-titulo;
+    letter-spacing: 0.04em;
+    color: $cobre-claro;
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  button[type="submit"] {
+    @include boton-primario;
+    align-self: flex-start;
+  }
+}
+
+.grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  label {
+    font-size: 0.85rem;
+    color: $cobre-claro;
+  }
+
+  input {
+    background: rgba(21, 24, 21, 0.6);
+    border: 1px solid rgba(201, 138, 82, 0.35);
+    border-radius: $radio-borde;
+    padding: 0.7rem 0.9rem;
+    color: $crema;
+
+    &:focus {
+      outline: none;
+      border-color: $cobre;
+    }
+  }
+}
+
+.ayudaChica {
+  color: $gris-humo;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.qrPreview {
+  display: flex;
+  justify-content: center;
+
+  img {
+    border-radius: $radio-borde;
+    background: $blanco;
+    padding: 0.6rem;
+  }
+}
+
+.botonSubir {
+  @include boton-secundario;
+  align-self: flex-start;
+  cursor: pointer;
+}
+
+.mensaje {
+  color: $cobre-claro;
+  font-size: 0.9rem;
+}
+
+.error {
+  color: #ff8b7a;
+  font-size: 0.9rem;
+}

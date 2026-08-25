@@ -1,0 +1,277 @@
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/admin/AdminGuard.module.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.AdminGuard_cargando__V9gSM {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9aa79c;
+  font-family: "Bebas Neue", "Oswald", sans-serif;
+  letter-spacing: 0.08em;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/admin/AdminNav.module.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.AdminNav_nav__ZR0j8 {
+  background: #232e27;
+  border-bottom: 1px solid rgba(201, 138, 82, 0.25);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.AdminNav_marca__O9T_U {
+  font-family: "Bebas Neue", "Oswald", sans-serif;
+  color: #c98a52;
+  letter-spacing: 0.08em;
+}
+
+.AdminNav_links__hAKOA {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  flex: 1 1;
+}
+
+.AdminNav_links__hAKOA a {
+  font-size: 0.9rem;
+  color: #9aa79c;
+  padding: 0.4rem 0;
+  border-bottom: 2px solid transparent;
+}
+.AdminNav_links__hAKOA a:hover {
+  color: #f4ecdd;
+}
+
+.AdminNav_activo__OI_Hy {
+  color: #c98a52 !important;
+  border-color: #c98a52;
+}
+
+.AdminNav_salir__Av6JE {
+  background: none;
+  border: 1px solid rgba(201, 138, 82, 0.4);
+  color: #9aa79c;
+  padding: 0.4rem 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+.AdminNav_salir__Av6JE:hover {
+  color: #f4ecdd;
+  border-color: #c98a52;
+}
+
+.AdminNav_hamburguesa__sYeo6 {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+.AdminNav_hamburguesa__sYeo6 span {
+  width: 22px;
+  height: 2px;
+  background: #c98a52;
+}
+
+@media (max-width: 960px) {
+  .AdminNav_nav__ZR0j8 {
+    padding: 0.9rem 1rem;
+    gap: 0.8rem;
+  }
+  .AdminNav_marca__O9T_U {
+    order: 1;
+  }
+  .AdminNav_hamburguesa__sYeo6 {
+    order: 2;
+    display: flex;
+    margin-left: auto;
+  }
+  .AdminNav_salir__Av6JE {
+    order: 3;
+  }
+  .AdminNav_links__hAKOA {
+    order: 4;
+    display: none;
+    flex-direction: column;
+    flex: 0 0 100%;
+    gap: 0;
+    margin: 0.4rem 0 0;
+    border-top: 1px solid rgba(201, 138, 82, 0.15);
+  }
+  .AdminNav_linksAbierto__oCnGD {
+    display: flex;
+  }
+  .AdminNav_links__hAKOA li {
+    width: 100%;
+  }
+  .AdminNav_links__hAKOA a {
+    display: block;
+    width: 100%;
+    padding: 0.85rem 0.2rem;
+    border-bottom: 1px solid rgba(201, 138, 82, 0.12);
+  }
+}
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/admin/GraficoSemanal.module.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.GraficoSemanal_contenedor__PuaKe {
+  width: 100%;
+}
+
+.GraficoSemanal_svg__cj3SG {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.GraficoSemanal_base__1hmcA {
+  stroke: rgba(201, 138, 82, 0.2);
+  stroke-width: 1;
+}
+
+.GraficoSemanal_barra__llsoh {
+  fill: rgba(201, 138, 82, 0.55);
+  transition: fill 0.15s ease;
+}
+
+.GraficoSemanal_barraActiva__g0kBr {
+  fill: #c98a52;
+}
+
+.GraficoSemanal_grupoBarra__cyH6y {
+  cursor: default;
+}
+
+.GraficoSemanal_etiqueta__TgDEw {
+  fill: #9aa79c;
+  font-size: 9px;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+}
+
+.GraficoSemanal_etiquetaHoy__uK2o5 {
+  fill: #e3b27e;
+  font-size: 9px;
+  font-weight: 600;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+}
+
+.GraficoSemanal_tooltipFondo__nL7aQ {
+  fill: #232e27;
+  stroke: #c98a52;
+  stroke-width: 1;
+}
+
+.GraficoSemanal_tooltipTexto__aw2OD {
+  fill: #f4ecdd;
+  font-size: 10px;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+}
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/app/admin/page.module.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.page_pagina__Wt_QX {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+}
+
+.page_pagina__Wt_QX h1 {
+  font-family: "Bebas Neue", "Oswald", sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: #f4ecdd;
+  font-size: 2rem;
+  margin: 0 0 2rem;
+}
+
+.page_cargando__nYG6Y {
+  color: #9aa79c;
+}
+
+.page_grilla__FGJ0X {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1.5rem;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+@media (max-width: 960px) {
+  .page_grilla__FGJ0X {
+    grid-template-columns: 1fr;
+  }
+}
+
+.page_tarjeta__t_gfD {
+  background: rgba(244, 236, 221, 0.04);
+  border: 1px solid rgba(201, 138, 82, 0.25);
+  border-radius: 8px;
+  padding: 1.8rem;
+}
+.page_tarjeta__t_gfD h3 {
+  font-family: "Bebas Neue", "Oswald", sans-serif;
+  color: #e3b27e;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.page_montoGrande__m38XP {
+  font-size: 2.2rem;
+  color: #c98a52;
+  font-weight: 600;
+  margin: 0 0 0.3rem;
+}
+
+.page_detalle__eIPUQ {
+  color: #9aa79c;
+  font-size: 0.85rem;
+}
+
+.page_graficoCard__0ko3_ {
+  background: rgba(244, 236, 221, 0.04);
+  border: 1px solid rgba(201, 138, 82, 0.25);
+  border-radius: 8px;
+  padding: 1.8rem;
+  padding-bottom: 0.6rem;
+}
+
+.page_desglose__8ia_t {
+  margin-bottom: 2.5rem;
+}
+.page_desglose__8ia_t h2 {
+  font-family: "Bebas Neue", "Oswald", sans-serif;
+  letter-spacing: 0.04em;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #f4ecdd;
+}
+.page_desglose__8ia_t table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.page_desglose__8ia_t th,
+.page_desglose__8ia_t td {
+  text-align: left;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid rgba(201, 138, 82, 0.15);
+  font-size: 0.9rem;
+}
+.page_desglose__8ia_t th {
+  color: #e3b27e;
+  font-family: "Bebas Neue", "Oswald", sans-serif;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+}

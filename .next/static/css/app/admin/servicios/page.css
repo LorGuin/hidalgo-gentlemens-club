@@ -1,0 +1,277 @@
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/admin/AdminGuard.module.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.AdminGuard_cargando__V9gSM {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9aa79c;
+  font-family: "Bebas Neue", "Oswald", sans-serif;
+  letter-spacing: 0.08em;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/admin/AdminNav.module.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.AdminNav_nav__ZR0j8 {
+  background: #232e27;
+  border-bottom: 1px solid rgba(201, 138, 82, 0.25);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.AdminNav_marca__O9T_U {
+  font-family: "Bebas Neue", "Oswald", sans-serif;
+  color: #c98a52;
+  letter-spacing: 0.08em;
+}
+
+.AdminNav_links__hAKOA {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  flex: 1 1;
+}
+
+.AdminNav_links__hAKOA a {
+  font-size: 0.9rem;
+  color: #9aa79c;
+  padding: 0.4rem 0;
+  border-bottom: 2px solid transparent;
+}
+.AdminNav_links__hAKOA a:hover {
+  color: #f4ecdd;
+}
+
+.AdminNav_activo__OI_Hy {
+  color: #c98a52 !important;
+  border-color: #c98a52;
+}
+
+.AdminNav_salir__Av6JE {
+  background: none;
+  border: 1px solid rgba(201, 138, 82, 0.4);
+  color: #9aa79c;
+  padding: 0.4rem 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+.AdminNav_salir__Av6JE:hover {
+  color: #f4ecdd;
+  border-color: #c98a52;
+}
+
+.AdminNav_hamburguesa__sYeo6 {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+.AdminNav_hamburguesa__sYeo6 span {
+  width: 22px;
+  height: 2px;
+  background: #c98a52;
+}
+
+@media (max-width: 960px) {
+  .AdminNav_nav__ZR0j8 {
+    padding: 0.9rem 1rem;
+    gap: 0.8rem;
+  }
+  .AdminNav_marca__O9T_U {
+    order: 1;
+  }
+  .AdminNav_hamburguesa__sYeo6 {
+    order: 2;
+    display: flex;
+    margin-left: auto;
+  }
+  .AdminNav_salir__Av6JE {
+    order: 3;
+  }
+  .AdminNav_links__hAKOA {
+    order: 4;
+    display: none;
+    flex-direction: column;
+    flex: 0 0 100%;
+    gap: 0;
+    margin: 0.4rem 0 0;
+    border-top: 1px solid rgba(201, 138, 82, 0.15);
+  }
+  .AdminNav_linksAbierto__oCnGD {
+    display: flex;
+  }
+  .AdminNav_links__hAKOA li {
+    width: 100%;
+  }
+  .AdminNav_links__hAKOA a {
+    display: block;
+    width: 100%;
+    padding: 0.85rem 0.2rem;
+    border-bottom: 1px solid rgba(201, 138, 82, 0.12);
+  }
+}
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/app/admin/servicios/page.module.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.page_pagina__YI6ax {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+  max-width: 780px;
+}
+
+.page_pagina__YI6ax h1 {
+  font-family: "Bebas Neue", "Oswald", sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: #f4ecdd;
+  font-size: 2rem;
+  margin: 0 0 0.6rem;
+}
+
+.page_ayuda__bg4su {
+  color: #9aa79c;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.page_form__X9Qqo {
+  background: rgba(244, 236, 221, 0.04);
+  border: 1px solid rgba(201, 138, 82, 0.25);
+  border-radius: 8px;
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.page_tablaHead__LjIVm {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  grid-gap: 0.8rem;
+  gap: 0.8rem;
+  padding: 0 0.2rem;
+  font-size: 0.78rem;
+  color: #e3b27e;
+  font-family: "Bebas Neue", "Oswald", sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+@media (max-width: 640px) {
+  .page_tablaHead__LjIVm {
+    display: none;
+  }
+}
+
+.page_fila__f2R_R {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  grid-gap: 0.8rem;
+  gap: 0.8rem;
+  align-items: center;
+}
+@media (max-width: 640px) {
+  .page_fila__f2R_R {
+    grid-template-columns: 1fr;
+  }
+}
+.page_fila__f2R_R input {
+  background: rgba(21, 24, 21, 0.6);
+  border: 1px solid rgba(201, 138, 82, 0.35);
+  border-radius: 4px;
+  padding: 0.6rem 0.8rem;
+  color: #f4ecdd;
+  width: 100%;
+}
+.page_fila__f2R_R input:focus {
+  outline: none;
+  border-color: #c98a52;
+}
+
+.page_botonBorrar__5UeDY {
+  background: none;
+  border: 1px solid rgba(255, 139, 122, 0.4);
+  color: #ff9d84;
+  border-radius: 4px;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.page_botonBorrar__5UeDY:hover {
+  background: rgba(255, 139, 122, 0.1);
+  border-color: #ff9d84;
+}
+
+.page_acciones__rRxrm {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.8rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(201, 138, 82, 0.15);
+  flex-wrap: wrap;
+}
+.page_acciones__rRxrm button[type=submit] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  background: #c98a52;
+  color: #151815;
+  font-family: "Bebas Neue", "Oswald", sans-serif;
+  letter-spacing: 0.06em;
+  font-size: 1.05rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+.page_acciones__rRxrm button[type=submit]:hover {
+  background: #e3b27e;
+  transform: translateY(-2px);
+}
+.page_acciones__rRxrm button[type=submit]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.page_botonAgregar___Aqpp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.8rem;
+  background: transparent;
+  color: #f4ecdd;
+  border: 1.5px solid #c98a52;
+  font-family: "Bebas Neue", "Oswald", sans-serif;
+  letter-spacing: 0.06em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.page_botonAgregar___Aqpp:hover {
+  background: rgba(201, 138, 82, 0.15);
+}
+
+.page_mensaje__OEPLe {
+  color: #e3b27e;
+  font-size: 0.9rem;
+}

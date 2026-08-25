@@ -1,0 +1,79 @@
+@use "variables" as *;
+
+@mixin contenedor {
+  width: 100%;
+  max-width: $max-ancho;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@mixin seccion($padding-y: 5rem) {
+  padding: $padding-y 0;
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: $padding-y * 0.6 0;
+  }
+}
+
+@mixin titulo-seccion {
+  font-family: $fuente-titulo;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: $crema;
+}
+
+@mixin boton-primario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  background: $cobre;
+  color: $negro;
+  font-family: $fuente-titulo;
+  letter-spacing: 0.06em;
+  font-size: 1.05rem;
+  border-radius: $radio-borde;
+  border: none;
+  cursor: pointer;
+  transition: transform $transicion, background $transicion;
+
+  &:hover {
+    background: $cobre-claro;
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+@mixin boton-secundario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.8rem;
+  background: transparent;
+  color: $crema;
+  border: 1.5px solid $cobre;
+  font-family: $fuente-titulo;
+  letter-spacing: 0.06em;
+  border-radius: $radio-borde;
+  cursor: pointer;
+  transition: background $transicion, color $transicion;
+
+  &:hover {
+    background: $cobre-suave;
+  }
+}
+
+@mixin tarjeta {
+  background: rgba(244, 236, 221, 0.04);
+  border: 1px solid rgba(201, 138, 82, 0.25);
+  border-radius: $radio-borde * 2;
+  padding: 1.8rem;
+}

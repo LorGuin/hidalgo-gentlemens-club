@@ -1,0 +1,67 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.pagina {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+}
+
+.form {
+  @include tarjeta;
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+
+  h1 {
+    font-family: $fuente-titulo;
+    color: $cobre;
+    letter-spacing: 0.05em;
+    margin: 0;
+    font-size: 1.6rem;
+  }
+
+  button {
+    @include boton-primario;
+    margin-top: 0.5rem;
+  }
+}
+
+.ayuda {
+  color: $gris-humo;
+  font-size: 0.85rem;
+  margin: -0.6rem 0 0.4rem;
+}
+
+.grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  label {
+    font-size: 0.85rem;
+    color: $cobre-claro;
+  }
+
+  input {
+    background: rgba(21, 24, 21, 0.6);
+    border: 1px solid rgba(201, 138, 82, 0.35);
+    border-radius: $radio-borde;
+    padding: 0.7rem 0.9rem;
+    color: $crema;
+
+    &:focus {
+      outline: none;
+      border-color: $cobre;
+    }
+  }
+}
+
+.error {
+  color: #ff8b7a;
+  font-size: 0.9rem;
+}

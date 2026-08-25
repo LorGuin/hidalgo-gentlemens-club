@@ -1,0 +1,70 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.seccion {
+  @include seccion;
+  background: $verde-profundo;
+}
+
+.contenedor {
+  @include contenedor;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: stretch;
+
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.eyebrow {
+  font-family: $fuente-titulo;
+  color: $cobre;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin-bottom: 0.8rem;
+}
+
+.texto h2 {
+  @include titulo-seccion;
+  margin: 0 0 1.2rem;
+}
+
+.direccion {
+  font-size: 1.1rem;
+  margin-bottom: 1.2rem;
+}
+
+.horarios {
+  margin-bottom: 1.5rem;
+
+  li {
+    color: $gris-humo;
+    padding: 0.3rem 0;
+    border-bottom: 1px dashed rgba(201, 138, 82, 0.2);
+  }
+
+  strong {
+    color: $crema;
+  }
+}
+
+.linkMapa {
+  color: $cobre;
+  border-bottom: 1px solid $cobre;
+  padding-bottom: 2px;
+
+  &:hover {
+    color: $cobre-claro;
+  }
+}
+
+.mapa {
+  min-height: 320px;
+  border-radius: $radio-borde * 2;
+  overflow: hidden;
+  border: 1px solid rgba(201, 138, 82, 0.3);
+  filter: grayscale(0.15) contrast(1.05);
+}

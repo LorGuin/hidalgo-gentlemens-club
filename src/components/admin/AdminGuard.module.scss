@@ -1,0 +1,11 @@
+@use "@/styles/variables" as *;
+
+.cargando {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $gris-humo;
+  font-family: $fuente-titulo;
+  letter-spacing: 0.08em;
+}

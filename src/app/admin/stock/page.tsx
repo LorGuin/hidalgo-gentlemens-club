@@ -1,0 +1,203 @@
+"use client";
+
+import { FormEvent, useEffect, useState } from "react";
+import AdminGuard from "@/components/admin/AdminGuard";
+import AdminNav from "@/components/admin/AdminNav";
+import { useAdminAuth } from "@/hooks/useAdminAuth";
+import {
+  suscribirProductos,
+  crearProducto,
+  actualizarProducto,
+  eliminarProducto,
+  ajustarStock,
+} from "@/lib/firestoreServices";
+import type { Producto } from "@/types";
+import styles from "./page.module.scss";
+
+const FORM_INICIAL = { nombre: "", categoria: "", precio: 0, costo: 0, stock: 0, stockMinimo: 3 };
+
+export default function AdminStockPage() {
+  const { esAdmin, cargando: cargandoAuth } = useAdminAuth();
+  const [productos, setProductos] = useState<Producto[]>([]);
+  const [form, setForm] = useState(FORM_INICIAL);
+  const [editandoId, setEditandoId] = useState<string | null>(null);
+  const [guardando, setGuardando] = useState(false);
+
+  useEffect(() => {
+    // Esperamos a que termine de confirmarse el login de admin antes de
+    // pedir nada — si no, Firestore rechaza el pedido con "permission
+    // denied" porque todavía no hay usuario autenticado.
+    if (cargandoAuth || !esAdmin) return;
+    const unsub = suscribirProductos(setProductos);
+    return () => unsub();
+  }, [cargandoAuth, esAdmin]);
+
+  function editar(p: Producto) {
+    setEditandoId(p.id || null);
+    setForm({
+      nombre: p.nombre,
+      categoria: p.categoria,
+      precio: p.precio,
+      costo: p.costo || 0,
+      stock: p.stock,
+      stockMinimo: p.stockMinimo,
+    });
+  }
+
+  function limpiarForm() {
+    setEditandoId(null);
+    setForm(FORM_INICIAL);
+  }
+
+  async function onSubmit(e: FormEvent) {
+    e.preventDefault();
+    if (!form.nombre.trim()) return;
+    setGuardando(true);
+    try {
+      if (editandoId) {
+        await actualizarProducto(editandoId, form);
+      } else {
+        await crearProducto(form);
+      }
+      limpiarForm();
+    } finally {
+      setGuardando(false);
+    }
+  }
+
+  return (
+    <AdminGuard>
+      <AdminNav />
+      <div className={styles.pagina}>
+        <h1>Stock de productos</h1>
+
+        <form className={styles.form} onSubmit={onSubmit}>
+          <div className={styles.grupo}>
+            <label htmlFor="nombre">Nombre del producto *</label>
+            <input
+              id="nombre"
+              placeholder="Ej: Cera capilar"
+              value={form.nombre}
+              onChange={(e) => setForm({ ...form, nombre: e.target.value })}
+              required
+            />
+          </div>
+
+          <div className={styles.grupo}>
+            <label htmlFor="categoria">Categoría (opcional)</label>
+            <input
+              id="categoria"
+              placeholder="Ej: Peinado, Barba, Cuidado"
+              value={form.categoria}
+              onChange={(e) => setForm({ ...form, categoria: e.target.value })}
+            />
+          </div>
+
+          <div className={styles.grupo}>
+            <label htmlFor="precio">Precio de venta *</label>
+            <input
+              id="precio"
+              type="number"
+              placeholder="0"
+              value={form.precio}
+              onChange={(e) => setForm({ ...form, precio: Number(e.target.value) })}
+              min={0}
+            />
+            <span className={styles.ayuda}>Lo que le cobrás al cliente.</span>
+          </div>
+
+          <div className={styles.grupo}>
+            <label htmlFor="costo">Costo (opcional)</label>
+            <input
+              id="costo"
+              type="number"
+              placeholder="0"
+              value={form.costo}
+              onChange={(e) => setForm({ ...form, costo: Number(e.target.value) })}
+              min={0}
+            />
+            <span className={styles.ayuda}>Lo que te cuesta a vos. Sirve para saber tu ganancia — no es obligatorio.</span>
+          </div>
+
+          <div className={styles.grupo}>
+            <label htmlFor="stock">Stock actual *</label>
+            <input
+              id="stock"
+              type="number"
+              placeholder="0"
+              value={form.stock}
+              onChange={(e) => setForm({ ...form, stock: Number(e.target.value) })}
+              min={0}
+            />
+            <span className={styles.ayuda}>Cuántas unidades tenés ahora en el local.</span>
+          </div>
+
+          <div className={styles.grupo}>
+            <label htmlFor="stockMinimo">Aviso de stock bajo</label>
+            <input
+              id="stockMinimo"
+              type="number"
+              placeholder="3"
+              value={form.stockMinimo}
+              onChange={(e) => setForm({ ...form, stockMinimo: Number(e.target.value) })}
+              min={0}
+            />
+            <span className={styles.ayuda}>
+              Cuando el stock baje de este número, el producto se marca en rojo en la lista de abajo
+              para avisarte que hay que reponer.
+            </span>
+          </div>
+
+          <div className={styles.accionesForm}>
+            <button type="submit" disabled={guardando}>
+              {editandoId ? "Guardar cambios" : "Agregar producto"}
+            </button>
+            {editandoId && (
+              <button type="button" className={styles.cancelar} onClick={limpiarForm}>
+                Cancelar
+              </button>
+            )}
+          </div>
+        </form>
+
+        <table className={styles.tabla}>
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Categoría</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {productos.map((p) => (
+              <tr key={p.id} className={p.stock <= p.stockMinimo ? styles.stockBajo : ""}>
+                <td>{p.nombre}</td>
+                <td>{p.categoria}</td>
+                <td>${p.precio.toLocaleString("es-AR")}</td>
+                <td>
+                  <div className={styles.stockCell}>
+                    <button onClick={() => p.id && ajustarStock(p.id, -1)}>-</button>
+                    <span>{p.stock}</span>
+                    <button onClick={() => p.id && ajustarStock(p.id, 1)}>+</button>
+                    {p.stock <= p.stockMinimo && <span className={styles.alerta}>bajo</span>}
+                  </div>
+                </td>
+                <td className={styles.acciones}>
+                  <button onClick={() => editar(p)}>Editar</button>
+                  <button onClick={() => p.id && eliminarProducto(p.id)}>Borrar</button>
+                </td>
+              </tr>
+            ))}
+            {productos.length === 0 && (
+              <tr>
+                <td colSpan={5}>Todavía no cargaste productos.</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </AdminGuard>
+  );
+}

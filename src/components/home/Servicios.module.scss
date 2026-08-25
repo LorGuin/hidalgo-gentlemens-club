@@ -1,0 +1,82 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.seccion {
+  @include seccion;
+  background: $verde-oscuro;
+}
+
+.contenedor {
+  @include contenedor;
+}
+
+.eyebrow {
+  font-family: $fuente-titulo;
+  color: $cobre;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin-bottom: 0.8rem;
+  text-align: center;
+}
+
+.contenedor h2 {
+  @include titulo-seccion;
+  text-align: center;
+  margin: 0 0 3rem;
+}
+
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: $breakpoint-mobile) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tarjeta {
+  @include tarjeta;
+  text-align: center;
+  transition: transform $transicion, border-color $transicion;
+
+  &:hover {
+    transform: translateY(-6px);
+    border-color: $cobre;
+  }
+
+  h3 {
+    font-family: $fuente-titulo;
+    letter-spacing: 0.04em;
+    font-size: 1.2rem;
+    margin: 0 0 0.5rem;
+  }
+}
+
+.duracion {
+  color: $gris-humo;
+  font-size: 0.85rem;
+  margin-bottom: 0.8rem;
+}
+
+.precio {
+  font-size: 1.6rem;
+  color: $cobre;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+
+.link {
+  font-size: 0.9rem;
+  color: $crema;
+  border-bottom: 1px solid $cobre;
+  padding-bottom: 2px;
+
+  &:hover {
+    color: $cobre-claro;
+  }
+}

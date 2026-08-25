@@ -1,0 +1,194 @@
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/admin/AdminGuard.module.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.AdminGuard_cargando__V9gSM {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9aa79c;
+  font-family: "Bebas Neue", "Oswald", sans-serif;
+  letter-spacing: 0.08em;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/components/admin/AdminNav.module.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.AdminNav_nav__ZR0j8 {
+  background: #232e27;
+  border-bottom: 1px solid rgba(201, 138, 82, 0.25);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.AdminNav_marca__O9T_U {
+  font-family: "Bebas Neue", "Oswald", sans-serif;
+  color: #c98a52;
+  letter-spacing: 0.08em;
+}
+
+.AdminNav_links__hAKOA {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  flex: 1 1;
+}
+
+.AdminNav_links__hAKOA a {
+  font-size: 0.9rem;
+  color: #9aa79c;
+  padding: 0.4rem 0;
+  border-bottom: 2px solid transparent;
+}
+.AdminNav_links__hAKOA a:hover {
+  color: #f4ecdd;
+}
+
+.AdminNav_activo__OI_Hy {
+  color: #c98a52 !important;
+  border-color: #c98a52;
+}
+
+.AdminNav_salir__Av6JE {
+  background: none;
+  border: 1px solid rgba(201, 138, 82, 0.4);
+  color: #9aa79c;
+  padding: 0.4rem 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+.AdminNav_salir__Av6JE:hover {
+  color: #f4ecdd;
+  border-color: #c98a52;
+}
+
+.AdminNav_hamburguesa__sYeo6 {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+.AdminNav_hamburguesa__sYeo6 span {
+  width: 22px;
+  height: 2px;
+  background: #c98a52;
+}
+
+@media (max-width: 960px) {
+  .AdminNav_nav__ZR0j8 {
+    padding: 0.9rem 1rem;
+    gap: 0.8rem;
+  }
+  .AdminNav_marca__O9T_U {
+    order: 1;
+  }
+  .AdminNav_hamburguesa__sYeo6 {
+    order: 2;
+    display: flex;
+    margin-left: auto;
+  }
+  .AdminNav_salir__Av6JE {
+    order: 3;
+  }
+  .AdminNav_links__hAKOA {
+    order: 4;
+    display: none;
+    flex-direction: column;
+    flex: 0 0 100%;
+    gap: 0;
+    margin: 0.4rem 0 0;
+    border-top: 1px solid rgba(201, 138, 82, 0.15);
+  }
+  .AdminNav_linksAbierto__oCnGD {
+    display: flex;
+  }
+  .AdminNav_links__hAKOA li {
+    width: 100%;
+  }
+  .AdminNav_links__hAKOA a {
+    display: block;
+    width: 100%;
+    padding: 0.85rem 0.2rem;
+    border-bottom: 1px solid rgba(201, 138, 82, 0.12);
+  }
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./src/app/admin/turnos/page.module.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.page_pagina__iYoPr {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+  overflow-x: auto;
+}
+
+.page_pagina__iYoPr h1 {
+  font-family: "Bebas Neue", "Oswald", sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: #f4ecdd;
+  font-size: 2rem;
+  margin: 0 0 0.6rem;
+}
+
+.page_ayuda__ejiZC {
+  color: #9aa79c;
+  margin-bottom: 1.8rem;
+  line-height: 1.6;
+  max-width: 620px;
+}
+
+.page_tabla__J6Fwf {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+.page_tabla__J6Fwf th,
+.page_tabla__J6Fwf td {
+  text-align: left;
+  padding: 0.8rem 0.9rem;
+  border-bottom: 1px solid rgba(201, 138, 82, 0.15);
+  font-size: 0.9rem;
+}
+.page_tabla__J6Fwf th {
+  color: #e3b27e;
+  font-family: "Bebas Neue", "Oswald", sans-serif;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+}
+.page_tabla__J6Fwf select {
+  background: rgba(21, 24, 21, 0.6);
+  border: 1px solid rgba(201, 138, 82, 0.35);
+  color: #f4ecdd;
+  border-radius: 4px;
+  padding: 0.3rem 0.5rem;
+}
+.page_tabla__J6Fwf a {
+  color: #c98a52;
+}
+
+.page_botonBorrar__p_n4d {
+  background: none;
+  border: 1px solid rgba(255, 139, 122, 0.4);
+  color: #ff9d84;
+  border-radius: 4px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.page_botonBorrar__p_n4d:hover {
+  background: rgba(255, 139, 122, 0.1);
+  border-color: #ff9d84;
+}

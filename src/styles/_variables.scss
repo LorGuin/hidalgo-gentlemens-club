@@ -1,0 +1,24 @@
+// Paleta inspirada en el mural del local (verde inglés + cobre/dorado)
+$verde-oscuro: #313f36;
+$verde-profundo: #232e27;
+$verde-medio: #435346;
+$cobre: #c98a52;
+$cobre-claro: #e3b27e;
+$cobre-suave: rgba(201, 138, 82, 0.15);
+$crema: #f4ecdd;
+$blanco: #fffdf8;
+$negro: #151815;
+$gris-humo: #9aa79c;
+
+$fuente-titulo: "Bebas Neue", "Oswald", sans-serif; // grandes titulares, estilo carteles de NY
+$fuente-firma: "Great Vibes", "Brush Script MT", cursive; // caligrafía tipo mural
+$fuente-cuerpo: "Poppins", "Segoe UI", sans-serif;
+
+$radio-borde: 4px;
+$sombra-suave: 0 10px 30px rgba(0, 0, 0, 0.25);
+$transicion: 0.25s ease;
+
+$max-ancho: 1180px;
+
+$breakpoint-mobile: 640px;
+$breakpoint-tablet: 960px;

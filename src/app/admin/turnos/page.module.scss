@@ -1,0 +1,70 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.pagina {
+  @include contenedor;
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+  overflow-x: auto;
+}
+
+.pagina h1 {
+  @include titulo-seccion;
+  font-size: 2rem;
+  margin: 0 0 0.6rem;
+}
+
+.ayuda {
+  color: $gris-humo;
+  margin-bottom: 1.8rem;
+  line-height: 1.6;
+  max-width: 620px;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+
+  th,
+  td {
+    text-align: left;
+    padding: 0.8rem 0.9rem;
+    border-bottom: 1px solid rgba(201, 138, 82, 0.15);
+    font-size: 0.9rem;
+  }
+
+  th {
+    color: $cobre-claro;
+    font-family: $fuente-titulo;
+    letter-spacing: 0.04em;
+    font-weight: 400;
+  }
+
+  select {
+    background: rgba(21, 24, 21, 0.6);
+    border: 1px solid rgba(201, 138, 82, 0.35);
+    color: $crema;
+    border-radius: 4px;
+    padding: 0.3rem 0.5rem;
+  }
+
+  a {
+    color: $cobre;
+  }
+}
+.botonBorrar {
+  background: none;
+  border: 1px solid rgba(255, 139, 122, 0.4);
+  color: #ff9d84;
+  border-radius: 4px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    background: rgba(255, 139, 122, 0.1);
+    border-color: #ff9d84;
+  }
+}
