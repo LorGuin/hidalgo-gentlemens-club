@@ -49,3 +49,18 @@
   font-size: 0.8rem;
   color: $gris-humo;
 }
+
+.creditos {
+  margin-top: 0.6rem;
+  font-size: 0.78rem;
+  color: $gris-humo;
+
+  a {
+    color: $cobre-claro;
+    text-decoration: underline;
+
+    &:hover {
+      color: $cobre;
+    }
+  }
+}

@@ -1,0 +1,209 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.botonFlotante {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 45;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(35, 46, 39, 0.5);
+  border: 1.5px solid rgba(201, 138, 82, 0.55);
+  backdrop-filter: blur(10px) saturate(160%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  box-shadow: $sombra-suave;
+  color: $cobre-claro;
+  cursor: pointer;
+  transition: transform $transicion, background $transicion;
+
+  &:hover {
+    transform: translateY(-2px);
+    background: rgba(35, 46, 39, 0.7);
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    right: 1rem;
+    bottom: 1rem;
+    width: 52px;
+    height: 52px;
+  }
+}
+
+.iconoBoton {
+  width: 32px;
+  height: 32px;
+
+  @media (max-width: $breakpoint-mobile) {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.cerrarIcono {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.panel {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 5.5rem;
+  z-index: 45;
+  width: min(360px, calc(100vw - 2rem));
+  max-height: min(70vh, 560px);
+  background: rgba(35, 46, 39, 0.68);
+  border: 1px solid rgba(201, 138, 82, 0.3);
+  border-radius: $radio-borde * 3;
+  box-shadow: $sombra-suave;
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  @media (max-width: $breakpoint-mobile) {
+    right: 1rem;
+    bottom: 4.2rem;
+    max-height: 75vh;
+  }
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid rgba(201, 138, 82, 0.2);
+}
+
+.panelTitulo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  h3 {
+    font-family: $fuente-titulo;
+    letter-spacing: 0.03em;
+    color: $crema;
+    font-size: 1.05rem;
+    margin: 0;
+    line-height: 1.1;
+  }
+}
+
+.subtitulo {
+  font-size: 0.72rem;
+  color: $gris-humo;
+  margin: 0.15rem 0 0;
+}
+
+.iconoHeader {
+  width: 26px;
+  height: 26px;
+  color: $cobre-claro;
+  flex-shrink: 0;
+}
+
+.cerrar {
+  background: none;
+  border: none;
+  color: $gris-humo;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.3rem;
+
+  &:hover {
+    color: $crema;
+  }
+}
+
+.mensajes {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.mensajeUsuario,
+.mensajeBot {
+  max-width: 85%;
+  padding: 0.6rem 0.9rem;
+  border-radius: $radio-borde * 2;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.mensajeUsuario {
+  align-self: flex-end;
+  background: rgba(201, 138, 82, 0.85);
+  color: $negro;
+}
+
+.mensajeBot {
+  align-self: flex-start;
+  background: rgba(244, 236, 221, 0.14);
+  color: $crema;
+}
+
+.error {
+  font-size: 0.8rem;
+  color: #ff8b7a;
+}
+
+.whatsappBar {
+  padding: 0.5rem 1.2rem;
+  border-top: 1px solid rgba(201, 138, 82, 0.15);
+  text-align: center;
+
+  a {
+    font-size: 0.78rem;
+    color: $gris-humo;
+    text-decoration: underline;
+
+    &:hover {
+      color: $cobre-claro;
+    }
+  }
+}
+
+.form {
+  display: flex;
+  gap: 0.6rem;
+  padding: 0.9rem 1.2rem 1.1rem;
+  border-top: 1px solid rgba(201, 138, 82, 0.2);
+
+  input {
+    flex: 1;
+    min-width: 0;
+    background: rgba(21, 24, 21, 0.45);
+    border: 1px solid rgba(201, 138, 82, 0.35);
+    border-radius: $radio-borde;
+    padding: 0.6rem 0.8rem;
+    color: $crema;
+    font-size: 0.88rem;
+
+    &:focus {
+      outline: none;
+      border-color: $cobre;
+    }
+  }
+
+  button {
+    @include boton-primario;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.85rem;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}

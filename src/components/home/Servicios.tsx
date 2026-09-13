@@ -20,7 +20,7 @@ export default function Servicios() {
               <p className={styles.duracion}>{s.duracionMin} min</p>
               <p className={styles.precio}>${s.precio.toLocaleString("es-AR")}</p>
               <Link href="/turnos" className={styles.link}>
-                Reservar →
+                Reservar
               </Link>
             </div>
           ))}

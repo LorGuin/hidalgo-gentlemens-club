@@ -157,3 +157,93 @@
     }
   }
 }
+// --- Agregado para la sección de tienda online (foto, descripción, publicar) ---
+
+.ayudaIntro {
+  color: $gris-humo;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: -1rem 0 2rem;
+  max-width: 60ch;
+}
+
+.grupoAncho {
+  grid-column: 1 / -1;
+
+  textarea {
+    width: 100%;
+    background: rgba(21, 24, 21, 0.6);
+    border: 1px solid rgba(201, 138, 82, 0.35);
+    border-radius: $radio-borde;
+    padding: 0.7rem 0.9rem;
+    color: $crema;
+    resize: vertical;
+    font-family: inherit;
+
+    &:focus {
+      outline: none;
+      border-color: $cobre;
+    }
+  }
+}
+
+.fotoPreview {
+  width: 90px;
+  height: 90px;
+  border-radius: $radio-borde;
+  overflow: hidden;
+  border: 1px solid rgba(201, 138, 82, 0.35);
+  margin-bottom: 0.5rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.botonSubirFoto {
+  @include boton-secundario;
+  display: inline-flex;
+  width: fit-content;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.checkbox {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+
+  input {
+    width: auto !important;
+    accent-color: $cobre;
+  }
+}
+
+.error {
+  color: #ff8b7a;
+  font-size: 0.8rem;
+}
+
+.badgePublicado,
+.badgeOculto {
+  border: none;
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.badgePublicado {
+  background: rgba(120, 200, 130, 0.18);
+  color: #8fdb9a;
+}
+
+.badgeOculto {
+  background: rgba(201, 138, 82, 0.12);
+  color: $gris-humo;
+}

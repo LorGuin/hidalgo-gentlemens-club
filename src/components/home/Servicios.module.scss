@@ -71,12 +71,7 @@
 }
 
 .link {
+  @include boton-secundario;
+  padding: 0.6rem 1.4rem;
   font-size: 0.9rem;
-  color: $crema;
-  border-bottom: 1px solid $cobre;
-  padding-bottom: 2px;
-
-  &:hover {
-    color: $cobre-claro;
-  }
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Chatbot from "@/components/ui/Chatbot";
 import { NEGOCIO_DEFAULT } from "@/lib/negocio";
 import "@/styles/globals.scss";
 
@@ -88,6 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="contenido">{children}</main>
         <Footer />
+        <Chatbot />
       </body>
     </html>
   );

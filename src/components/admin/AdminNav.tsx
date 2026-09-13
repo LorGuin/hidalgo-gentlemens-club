@@ -10,7 +10,7 @@ const ITEMS = [
   { href: "/admin", label: "Estadísticas" },
   { href: "/admin/turnos", label: "Agenda de turnos" },
   { href: "/admin/ventas", label: "Registrar corte / venta" },
-  { href: "/admin/stock", label: "Stock" },
+  { href: "/admin/stock", label: "Productos y tienda" },
   { href: "/admin/servicios", label: "Servicios y precios" },
   { href: "/admin/pagos", label: "Pagos" },
 ];

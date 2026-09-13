@@ -40,6 +40,13 @@ export default function Footer() {
         <p className={styles.copy}>
           © {anio} {negocio.nombre} — Barbería clásica americana. Todos los derechos reservados.
         </p>
+        <p className={styles.creditos}>
+          Sitio web desarrollado por{" "}
+          <a href="https://teknodev.netlify.app/" target="_blank" rel="noopener noreferrer">
+            TeknoDev
+          </a>{" "}
+          — ¿querés una web como esta para tu negocio? Consultanos.
+        </p>
       </div>
     </footer>
   );

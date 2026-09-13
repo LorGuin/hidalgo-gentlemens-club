@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import AdminGuard from "@/components/admin/AdminGuard";
 import AdminNav from "@/components/admin/AdminNav";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
@@ -11,10 +11,21 @@ import {
   eliminarProducto,
   ajustarStock,
 } from "@/lib/firestoreServices";
+import { comprimirImagenComoBase64 } from "@/lib/imagen";
 import type { Producto } from "@/types";
 import styles from "./page.module.scss";
 
-const FORM_INICIAL = { nombre: "", categoria: "", precio: 0, costo: 0, stock: 0, stockMinimo: 3 };
+const FORM_INICIAL = {
+  nombre: "",
+  categoria: "",
+  precio: 0,
+  costo: 0,
+  stock: 0,
+  stockMinimo: 3,
+  descripcion: "",
+  fotoUrl: undefined as string | undefined,
+  publicado: false,
+};
 
 export default function AdminStockPage() {
   const { esAdmin, cargando: cargandoAuth } = useAdminAuth();
@@ -22,6 +33,8 @@ export default function AdminStockPage() {
   const [form, setForm] = useState(FORM_INICIAL);
   const [editandoId, setEditandoId] = useState<string | null>(null);
   const [guardando, setGuardando] = useState(false);
+  const [subiendoFoto, setSubiendoFoto] = useState(false);
+  const [errorFoto, setErrorFoto] = useState<string | null>(null);
 
   useEffect(() => {
     // Esperamos a que termine de confirmarse el login de admin antes de
@@ -41,12 +54,40 @@ export default function AdminStockPage() {
       costo: p.costo || 0,
       stock: p.stock,
       stockMinimo: p.stockMinimo,
+      descripcion: p.descripcion || "",
+      fotoUrl: p.fotoUrl,
+      publicado: p.publicado || false,
     });
+    setErrorFoto(null);
   }
 
   function limpiarForm() {
     setEditandoId(null);
     setForm(FORM_INICIAL);
+    setErrorFoto(null);
+  }
+
+  async function onCambiarFoto(e: ChangeEvent<HTMLInputElement>) {
+    const archivo = e.target.files?.[0];
+    if (!archivo) return;
+
+    if (!archivo.type.startsWith("image/")) {
+      setErrorFoto("El archivo tiene que ser una imagen (JPG o PNG).");
+      return;
+    }
+
+    setSubiendoFoto(true);
+    setErrorFoto(null);
+    try {
+      const dataUrl = await comprimirImagenComoBase64(archivo, 480);
+      setForm((f) => ({ ...f, fotoUrl: dataUrl }));
+    } catch (err) {
+      console.error(err);
+      setErrorFoto("No se pudo procesar la imagen. Probá con otra foto.");
+    } finally {
+      setSubiendoFoto(false);
+      e.target.value = "";
+    }
   }
 
   async function onSubmit(e: FormEvent) {
@@ -69,7 +110,12 @@ export default function AdminStockPage() {
     <AdminGuard>
       <AdminNav />
       <div className={styles.pagina}>
-        <h1>Stock de productos</h1>
+        <h1>Productos y stock</h1>
+        <p className={styles.ayudaIntro}>
+          Cargá acá tus productos. Los que tildes como &quot;Mostrar en la tienda online&quot;
+          aparecen con foto y precio en la sección Tienda de la página principal, y el
+          cliente puede pedirlos por WhatsApp.
+        </p>
 
         <form className={styles.form} onSubmit={onSubmit}>
           <div className={styles.grupo}>
@@ -148,6 +194,46 @@ export default function AdminStockPage() {
             </span>
           </div>
 
+          <div className={`${styles.grupo} ${styles.grupoAncho}`}>
+            <label htmlFor="descripcion">Descripción para la tienda (opcional)</label>
+            <textarea
+              id="descripcion"
+              rows={2}
+              placeholder="Una frase corta que vea el cliente en la tienda online"
+              value={form.descripcion}
+              onChange={(e) => setForm({ ...form, descripcion: e.target.value })}
+            />
+          </div>
+
+          <div className={styles.grupo}>
+            <label>Foto para la tienda (opcional)</label>
+            {form.fotoUrl && (
+              <div className={styles.fotoPreview}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={form.fotoUrl} alt="Vista previa" />
+              </div>
+            )}
+            <label className={styles.botonSubirFoto}>
+              {subiendoFoto ? "Procesando..." : form.fotoUrl ? "Cambiar foto" : "Subir foto"}
+              <input type="file" accept="image/*" onChange={onCambiarFoto} disabled={subiendoFoto} hidden />
+            </label>
+            {errorFoto && <span className={styles.error}>{errorFoto}</span>}
+          </div>
+
+          <div className={styles.grupo}>
+            <label className={styles.checkbox}>
+              <input
+                type="checkbox"
+                checked={form.publicado}
+                onChange={(e) => setForm({ ...form, publicado: e.target.checked })}
+              />
+              Mostrar en la tienda online
+            </label>
+            <span className={styles.ayuda}>
+              Si lo tildás, este producto aparece con foto y precio en la sección Tienda del sitio.
+            </span>
+          </div>
+
           <div className={styles.accionesForm}>
             <button type="submit" disabled={guardando}>
               {editandoId ? "Guardar cambios" : "Agregar producto"}
@@ -167,6 +253,7 @@ export default function AdminStockPage() {
               <th>Categoría</th>
               <th>Precio</th>
               <th>Stock</th>
+              <th>Tienda</th>
               <th></th>
             </tr>
           </thead>
@@ -184,6 +271,15 @@ export default function AdminStockPage() {
                     {p.stock <= p.stockMinimo && <span className={styles.alerta}>bajo</span>}
                   </div>
                 </td>
+                <td>
+                  <button
+                    type="button"
+                    className={p.publicado ? styles.badgePublicado : styles.badgeOculto}
+                    onClick={() => p.id && actualizarProducto(p.id, { publicado: !p.publicado })}
+                  >
+                    {p.publicado ? "Publicado" : "Oculto"}
+                  </button>
+                </td>
                 <td className={styles.acciones}>
                   <button onClick={() => editar(p)}>Editar</button>
                   <button onClick={() => p.id && eliminarProducto(p.id)}>Borrar</button>
@@ -192,7 +288,7 @@ export default function AdminStockPage() {
             ))}
             {productos.length === 0 && (
               <tr>
-                <td colSpan={5}>Todavía no cargaste productos.</td>
+                <td colSpan={6}>Todavía no cargaste productos.</td>
               </tr>
             )}
           </tbody>

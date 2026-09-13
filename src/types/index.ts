@@ -64,6 +64,14 @@ export interface Venta {
   creadoEn?: unknown;
 }
 
+/**
+ * Producto: se usa tanto para el control de stock interno (panel
+ * /admin/stock) como para la tienda online pública (sección "Tienda" del
+ * home). "publicado" decide si aparece en la tienda pública; "fotoUrl" y
+ * "descripcion" son opcionales y solo hacen falta si se va a mostrar ahí.
+ * La foto se guarda en base64 directo en el documento (mismo approach que
+ * el QR de pagos, ver lib/imagen.ts) para no depender de Firebase Storage.
+ */
 export interface Producto {
   id?: string;
   nombre: string;
@@ -72,5 +80,8 @@ export interface Producto {
   costo?: number;
   stock: number;
   stockMinimo: number;
+  descripcion?: string;
+  fotoUrl?: string;
+  publicado?: boolean;
   actualizadoEn?: unknown;
 }
