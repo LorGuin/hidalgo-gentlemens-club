@@ -1,0 +1,113 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.pagina {
+  @include contenedor;
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+}
+
+.pagina h1 {
+  @include titulo-seccion;
+  font-size: 2rem;
+  margin: 0 0 0.8rem;
+}
+
+.ayudaIntro {
+  color: $gris-humo;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0 0 2rem;
+  max-width: 60ch;
+}
+
+.ayuda {
+  color: $gris-humo;
+  font-size: 0.9rem;
+}
+
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: $breakpoint-mobile) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tarjeta {
+  @include tarjeta;
+
+  h2 {
+    font-family: $fuente-titulo;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: $cobre-claro;
+    margin: 0 0 1rem;
+  }
+}
+
+.preview {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: $radio-borde;
+  overflow: hidden;
+  border: 1px solid rgba(201, 138, 82, 0.35);
+  margin-bottom: 1rem;
+  background: rgba(21, 24, 21, 0.6);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.botonSubir {
+  @include boton-secundario;
+  display: inline-flex;
+  width: fit-content;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.restablecer {
+  background: none;
+  border: 1px solid rgba(201, 138, 82, 0.35);
+  color: $gris-humo;
+  border-radius: 4px;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+
+  &:hover {
+    color: $crema;
+    border-color: $cobre;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.mensaje {
+  color: #8fdb9a;
+  font-size: 0.85rem;
+  margin-top: 1.5rem;
+}
+
+.error {
+  color: #ff8b7a;
+  font-size: 0.85rem;
+  margin-top: 1.5rem;
+}

@@ -1,14 +1,19 @@
-import Image from "next/image";
+"use client";
+
+import { useNegocioConfig } from "@/hooks/useNegocioConfig";
 import styles from "./ElLocal.module.scss";
 
 /**
- * Galería con fotos reales del local: la recepción y el mural de Nueva York,
- * el salón en general, un corte en acción, y las herramientas de trabajo.
- * Cada foto usa `fill` dentro de una celda con aspect-ratio fijo — así el
- * tamaño de la imagen lo decide SIEMPRE el CSS (nunca el tamaño real del
- * archivo que se suba), y no hay riesgo de que una foto se vea "gigante".
+ * Galería con fotos del local: la recepción y el mural de Nueva York, el
+ * salón en general, un corte en acción, y las herramientas de trabajo.
+ *
+ * Cada foto se puede reemplazar desde /admin/local (self-service, igual
+ * patrón que el QR de pagos o las fotos de productos: se guarda en base64
+ * en config/negocio, campo fotosLocal). Si el dueño no cargó una foto
+ * propia para un lugar de la galería, se usa la foto de fábrica en
+ * public/images/.
  */
-const FOTOS = [
+const FOTOS_DEFAULT = [
   {
     src: "/images/local-general.jpg",
     alt: "Interior de Hidalgo Gentlemen's Club con el mural de Nueva York de fondo",
@@ -28,6 +33,13 @@ const FOTOS = [
 ];
 
 export default function ElLocal() {
+  const { config } = useNegocioConfig();
+
+  const fotos = FOTOS_DEFAULT.map((foto, i) => ({
+    src: config.fotosLocal?.[i] || foto.src,
+    alt: foto.alt,
+  }));
+
   return (
     <section className={styles.seccion}>
       <div className={styles.contenedor}>
@@ -39,15 +51,10 @@ export default function ElLocal() {
         </p>
 
         <div className={styles.galeria}>
-          {FOTOS.map((foto) => (
-            <div key={foto.src} className={styles.celda}>
-              <Image
-                src={foto.src}
-                alt={foto.alt}
-                fill
-                sizes="(max-width: 700px) 100vw, 50vw"
-                className={styles.img}
-              />
+          {fotos.map((foto, i) => (
+            <div key={i} className={styles.celda}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={foto.src} alt={foto.alt} className={styles.img} loading="lazy" />
             </div>
           ))}
         </div>

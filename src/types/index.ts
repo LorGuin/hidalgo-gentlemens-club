@@ -22,6 +22,9 @@ export interface NegocioConfig {
   facebook?: string;
   horarios: Horario[];
   servicios: Servicio[];
+  // Fotos de la galería "El local" (base64, subidas desde /admin/local). Un
+  // índice sin foto propia usa la foto de fábrica (ver ElLocal.tsx).
+  fotosLocal?: string[];
 }
 
 export type EstadoTurno = "pendiente" | "confirmado" | "cancelado" | "completado";

@@ -18,8 +18,20 @@ export function useNegocioConfig() {
 
   useEffect(() => {
     const unsub = suscribirConfigNegocio((datos) => {
-      if (datos && datos.servicios && datos.servicios.length > 0) {
-        setConfig({ ...NEGOCIO_DEFAULT, ...datos, servicios: datos.servicios });
+      // Antes esto solo mezclaba "datos" cuando traía servicios cargados, y
+      // si no, descartaba TODO el documento (incluidos campos sueltos como
+      // qrUrl, alias o fotosLocal). Se separa la condición para que
+      // cualquier campo parcial del doc se aplique igual, sin depender de
+      // que /admin/servicios ya se haya usado.
+      if (datos) {
+        setConfig({
+          ...NEGOCIO_DEFAULT,
+          ...datos,
+          servicios:
+            datos.servicios && datos.servicios.length > 0
+              ? datos.servicios
+              : NEGOCIO_DEFAULT.servicios,
+        });
       } else {
         setConfig(NEGOCIO_DEFAULT);
       }
