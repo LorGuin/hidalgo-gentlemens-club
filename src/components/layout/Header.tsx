@@ -8,7 +8,7 @@ import styles from "./Header.module.scss";
 const LINKS = [
   { href: "/#sobre-mi", label: "Sobre mí" },
   { href: "/#servicios", label: "Servicios" },
-  { href: "/#tienda", label: "Tienda" },
+  { href: "/tienda", label: "Tienda" },
   { href: "/#ubicacion", label: "Ubicación" },
   { href: "/#contacto", label: "Contacto" },
 ];

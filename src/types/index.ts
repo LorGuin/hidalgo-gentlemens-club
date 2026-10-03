@@ -25,6 +25,9 @@ export interface NegocioConfig {
   // Fotos de la galería "El local" (base64, subidas desde /admin/local). Un
   // índice sin foto propia usa la foto de fábrica (ver ElLocal.tsx).
   fotosLocal?: string[];
+  // Barberos que atienden en el salón (se editan desde la Caja diaria). Cada
+  // corte registrado puede asignarse a uno, para ver cuánto hizo cada uno.
+  barberos?: string[];
 }
 
 export type EstadoTurno = "pendiente" | "confirmado" | "cancelado" | "completado";
@@ -62,6 +65,8 @@ export interface Venta {
   turnoId?: string;
   productoId?: string;
   cantidadProducto?: number;
+  /** Quién hizo el corte (nombre, de NegocioConfig.barberos). */
+  barbero?: string;
   preferenceId?: string;
   paymentId?: string;
   creadoEn?: unknown;
@@ -87,4 +92,46 @@ export interface Producto {
   fotoUrl?: string;
   publicado?: boolean;
   actualizadoEn?: unknown;
+}
+
+/* ------------------------------- Caja diaria -------------------------------- */
+
+export type EstadoCaja = "abierta" | "cerrada";
+
+/** Resumen de números de un día de caja (se guarda congelado al cerrar). */
+export interface ResumenCaja {
+  cantidadVentas: number;
+  cantidadServicios: number;
+  efectivo: number;
+  digital: number; // transferencia / QR / Mercado Pago
+  pendiente: number;
+  gastos: number;
+  retiros: number;
+  totalCobrado: number; // efectivo + digital
+  efectivoEsperado: number; // inicial + efectivo - gastos - retiros
+  porBarbero: Record<string, { cantidad: number; total: number }>;
+}
+
+/** Documento cajas/{yyyy-mm-dd}: apertura y cierre de un día. */
+export interface Caja {
+  fecha: string; // yyyy-mm-dd (fecha local)
+  estado: EstadoCaja;
+  montoInicial: number;
+  abiertaEn?: unknown;
+  cerradaEn?: unknown;
+  efectivoContado?: number;
+  diferencia?: number; // contado - esperado (positivo = sobrante)
+  nota?: string;
+  resumen?: ResumenCaja;
+}
+
+export type TipoMovimientoCaja = "gasto" | "retiro";
+
+/** cajas/{fecha}/movimientos/{id}: salidas de efectivo del día. */
+export interface MovimientoCaja {
+  id?: string;
+  tipo: TipoMovimientoCaja;
+  descripcion: string;
+  monto: number;
+  creadoEn?: unknown;
 }

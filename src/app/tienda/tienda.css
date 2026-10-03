@@ -1,0 +1,117 @@
+/*
+ * Tailwind CSS v4 + tokens de shadcn/ui, SOLO para la tienda (/tienda).
+ *
+ * El resto del sitio está hecho con Sass + CSS Modules, así que acá:
+ *  - NO se importa el "preflight" (reset global) de Tailwind, que pisaría
+ *    los estilos del header, footer y del resto de las páginas.
+ *  - Solo se generan utilidades para las clases que aparecen en los
+ *    archivos de la tienda y de los componentes shadcn (ver @source).
+ *  - El mini-reset que necesitan los componentes shadcn (bordes, márgenes)
+ *    se aplica únicamente adentro de elementos con el atributo `data-tw`
+ *    (la página de la tienda y los paneles flotantes: Sheet, Select).
+ */
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+@import "tw-animate-css";
+
+@source "../../components/ui";
+
+/* Paleta Hidalgo (verde inglés + cobre) expresada como tokens de shadcn. */
+[data-tw] {
+  --radius: 0.5rem;
+  --background: #232e27;
+  --foreground: #f4ecdd;
+  --card: #2a372f;
+  --card-foreground: #f4ecdd;
+  --popover: #232e27;
+  --popover-foreground: #f4ecdd;
+  --primary: #c98a52;
+  --primary-foreground: #151815;
+  --secondary: #435346;
+  --secondary-foreground: #f4ecdd;
+  --muted: #2a372f;
+  --muted-foreground: #a9b5ab;
+  --accent: #3a4a3f;
+  --accent-foreground: #f4ecdd;
+  --destructive: #c0533f;
+  --destructive-foreground: #fffdf8;
+  --border: rgba(201, 138, 82, 0.22);
+  --input: rgba(244, 236, 221, 0.2);
+  --ring: #e3b27e;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-display: "Bebas Neue", "Oswald", sans-serif;
+  --font-sans: "Poppins", "Segoe UI", sans-serif;
+}
+
+/* Mini-reset acotado a la tienda (reemplaza al preflight global). */
+@layer base {
+  [data-tw],
+  [data-tw] *,
+  [data-tw] ::before,
+  [data-tw] ::after {
+    box-sizing: border-box;
+    border: 0 solid var(--border);
+  }
+
+  [data-tw] {
+    font-family: var(--font-sans);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  [data-tw] :where(h1, h2, h3, h4, p, figure, fieldset, legend, ul, ol) {
+    margin: 0;
+    padding: 0;
+  }
+
+  [data-tw] :where(h1, h2, h3, h4) {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  [data-tw] :where(button, input, select, textarea) {
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    margin: 0;
+  }
+
+  [data-tw] :where(button, [role="button"]) {
+    cursor: pointer;
+  }
+
+  [data-tw] :where(button:disabled) {
+    cursor: default;
+  }
+
+  [data-tw] :where(input)::placeholder {
+    color: var(--muted-foreground);
+  }
+}

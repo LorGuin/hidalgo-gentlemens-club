@@ -9,7 +9,7 @@ import styles from "./AdminNav.module.scss";
 const ITEMS = [
   { href: "/admin", label: "Estadísticas" },
   { href: "/admin/turnos", label: "Agenda de turnos" },
-  { href: "/admin/ventas", label: "Registrar corte / venta" },
+  { href: "/admin/ventas", label: "Caja diaria" },
   { href: "/admin/stock", label: "Productos y tienda" },
   { href: "/admin/local", label: "Fotos del local" },
   { href: "/admin/servicios", label: "Servicios y precios" },

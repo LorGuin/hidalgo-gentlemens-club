@@ -11,7 +11,7 @@ const SALUDO_INICIAL: Mensaje = {
   rol: "modelo",
   texto:
     "¡Hola! Soy Hugo 🤖, el asistente de la barbería. Puedo responderte sobre cortes, " +
-    "servicios, precios, horarios y ubicación. ¿En qué te ayudo?",
+    "servicios, precios, horarios, ubicación y los productos de nuestra tienda. ¿En qué te ayudo?",
 };
 
 /**
@@ -92,9 +92,12 @@ export default function Chatbot() {
           historial: historial.map((m) => ({ rol: m.rol, texto: m.texto })),
         }),
       });
-      const data = await resp.json();
+      const data = await resp.json().catch(() => null);
       if (!resp.ok) {
-        throw new Error(data?.error || "error-desconocido");
+        // Pista para diagnosticar desde la consola del navegador (F12), sin
+        // mostrarle detalles técnicos al cliente.
+        console.warn("[Hugo] /api/chat respondió", resp.status, data?.motivo ?? "", data?.estadoGemini ?? "");
+        throw new Error(data?.motivo || data?.error || `http-${resp.status}`);
       }
       setMensajes((m) => [...m, { rol: "modelo", texto: data.texto }]);
     } catch (err) {

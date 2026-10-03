@@ -7,6 +7,7 @@ import { obtenerConfigNegocio, guardarConfigNegocio } from "@/lib/firestoreServi
 import { NEGOCIO_DEFAULT } from "@/lib/negocio";
 import type { Servicio } from "@/types";
 import styles from "./page.module.scss";
+import InputNumero from "@/components/ui/InputNumero";
 
 /**
  * Página para que el dueño cargue/edite los servicios y precios que se
@@ -99,17 +100,18 @@ export default function AdminServiciosPage() {
                   onChange={(e) => actualizarServicio(i, { nombre: e.target.value })}
                   required
                 />
-                <input
-                  type="number"
-                  min={0}
+                <InputNumero
+                  placeholder="Precio"
+                  aria-label="Precio"
                   value={s.precio}
-                  onChange={(e) => actualizarServicio(i, { precio: Number(e.target.value) })}
+                  onChange={(n) => actualizarServicio(i, { precio: n ?? 0 })}
                 />
-                <input
-                  type="number"
-                  min={0}
+                <InputNumero
+                  placeholder="Minutos"
+                  aria-label="Duración en minutos"
+                  miles={false}
                   value={s.duracionMin}
-                  onChange={(e) => actualizarServicio(i, { duracionMin: Number(e.target.value) })}
+                  onChange={(n) => actualizarServicio(i, { duracionMin: n ?? 0 })}
                 />
                 <button
                   type="button"

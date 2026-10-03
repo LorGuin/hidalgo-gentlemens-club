@@ -88,3 +88,53 @@
     font-weight: 400;
   }
 }
+/* ---------------------------- Progreso mes a mes ---------------------------- */
+
+.comparacion {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.varSube,
+.varBaja,
+.varNeutra {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.varSube {
+  color: #6fcf97;
+}
+
+.varBaja {
+  color: #eb7a62;
+}
+
+.varNeutra {
+  color: $gris-humo;
+  font-weight: 400;
+}
+
+.varTexto {
+  color: $gris-humo;
+  font-weight: 400;
+}
+
+.tablaScroll {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+
+  table {
+    min-width: 520px;
+  }
+}
+
+.celdaMes {
+  text-transform: capitalize;
+}

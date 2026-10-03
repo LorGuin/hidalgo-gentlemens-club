@@ -1,14 +1,17 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
+  "/admin/local/page": "app/admin/local/page.js",
   "/admin/login/page": "app/admin/login/page.js",
-  "/admin/pagos/page": "app/admin/pagos/page.js",
   "/admin/page": "app/admin/page.js",
-  "/admin/servicios/page": "app/admin/servicios/page.js",
   "/admin/turnos/page": "app/admin/turnos/page.js",
-  "/admin/stock/page": "app/admin/stock/page.js",
-  "/page": "app/page.js",
-  "/sitemap.xml/route": "app/sitemap.xml/route.js",
-  "/robots.txt/route": "app/robots.txt/route.js",
   "/admin/ventas/page": "app/admin/ventas/page.js",
-  "/turnos/page": "app/turnos/page.js"
+  "/admin/stock/page": "app/admin/stock/page.js",
+  "/robots.txt/route": "app/robots.txt/route.js",
+  "/page": "app/page.js",
+  "/admin/pagos/page": "app/admin/pagos/page.js",
+  "/admin/servicios/page": "app/admin/servicios/page.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/tienda/page": "app/tienda/page.js",
+  "/turnos/page": "app/turnos/page.js",
+  "/api/chat/route": "app/api/chat/route.js"
 }

@@ -1,0 +1,112 @@
+@use "@/styles/variables" as *;
+
+.contenedor {
+  position: relative;
+  width: 100%;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.base {
+  stroke: rgba(201, 138, 82, 0.3);
+  stroke-width: 1;
+}
+
+.guia {
+  stroke: rgba(244, 236, 221, 0.07);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+
+.guiaTexto {
+  fill: $gris-humo;
+  font-size: 9px;
+  font-family: $fuente-cuerpo;
+  opacity: 0.8;
+}
+
+.hit {
+  cursor: pointer;
+}
+
+.barra {
+  fill: rgba(201, 138, 82, 0.6);
+  transition: fill 0.15s ease;
+}
+
+.barraEnCurso {
+  fill: rgba(201, 138, 82, 0.22);
+  stroke: $cobre;
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+  transition: fill 0.15s ease;
+}
+
+.barraActiva {
+  fill: $cobre;
+}
+
+.etiqueta,
+.etiquetaActual,
+.anio {
+  font-family: $fuente-cuerpo;
+  font-size: 10px;
+}
+
+.etiqueta {
+  fill: $gris-humo;
+}
+
+.etiquetaActual {
+  fill: $cobre-claro;
+  font-weight: 600;
+}
+
+.anio {
+  fill: $gris-humo;
+  font-size: 8px;
+  opacity: 0.8;
+}
+
+.tooltip {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 150px;
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  background: $verde-profundo;
+  border: 1px solid $cobre;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+  font-size: 0.78rem;
+  color: $gris-humo;
+  white-space: nowrap;
+
+  strong {
+    font-size: 1.1rem;
+    color: $crema;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.tooltipMes {
+  color: $cobre-claro;
+  text-transform: capitalize;
+}
+
+.sube {
+  color: #6fcf97;
+}
+
+.baja {
+  color: #eb7a62;
+}

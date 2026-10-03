@@ -12,8 +12,8 @@ export default function HomePage() {
       <Hero />
       <SobreMi />
       <Servicios />
-      <Productos />
       <ElLocal />
+      <Productos />
       <Ubicacion />
       <Contacto />
     </>

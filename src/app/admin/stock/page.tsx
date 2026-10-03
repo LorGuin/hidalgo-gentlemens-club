@@ -14,6 +14,7 @@ import {
 import { comprimirImagenComoBase64 } from "@/lib/imagen";
 import type { Producto } from "@/types";
 import styles from "./page.module.scss";
+import InputNumero from "@/components/ui/InputNumero";
 
 const FORM_INICIAL = {
   nombre: "",
@@ -141,52 +142,46 @@ export default function AdminStockPage() {
 
           <div className={styles.grupo}>
             <label htmlFor="precio">Precio de venta *</label>
-            <input
+            <InputNumero
               id="precio"
-              type="number"
               placeholder="0"
               value={form.precio}
-              onChange={(e) => setForm({ ...form, precio: Number(e.target.value) })}
-              min={0}
+              onChange={(n) => setForm({ ...form, precio: n ?? 0 })}
             />
             <span className={styles.ayuda}>Lo que le cobrás al cliente.</span>
           </div>
 
           <div className={styles.grupo}>
             <label htmlFor="costo">Costo (opcional)</label>
-            <input
+            <InputNumero
               id="costo"
-              type="number"
               placeholder="0"
               value={form.costo}
-              onChange={(e) => setForm({ ...form, costo: Number(e.target.value) })}
-              min={0}
+              onChange={(n) => setForm({ ...form, costo: n ?? 0 })}
             />
             <span className={styles.ayuda}>Lo que te cuesta a vos. Sirve para saber tu ganancia — no es obligatorio.</span>
           </div>
 
           <div className={styles.grupo}>
             <label htmlFor="stock">Stock actual *</label>
-            <input
+            <InputNumero
               id="stock"
-              type="number"
               placeholder="0"
+              miles={false}
               value={form.stock}
-              onChange={(e) => setForm({ ...form, stock: Number(e.target.value) })}
-              min={0}
+              onChange={(n) => setForm({ ...form, stock: n ?? 0 })}
             />
             <span className={styles.ayuda}>Cuántas unidades tenés ahora en el local.</span>
           </div>
 
           <div className={styles.grupo}>
             <label htmlFor="stockMinimo">Aviso de stock bajo</label>
-            <input
+            <InputNumero
               id="stockMinimo"
-              type="number"
-              placeholder="3"
+              placeholder="0"
+              miles={false}
               value={form.stockMinimo}
-              onChange={(e) => setForm({ ...form, stockMinimo: Number(e.target.value) })}
-              min={0}
+              onChange={(n) => setForm({ ...form, stockMinimo: n ?? 0 })}
             />
             <span className={styles.ayuda}>
               Cuando el stock baje de este número, el producto se marca en rojo en la lista de abajo

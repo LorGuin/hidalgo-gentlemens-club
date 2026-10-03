@@ -1,50 +1,982 @@
 @use "@/styles/variables" as *;
 @use "@/styles/mixins" as *;
 
+// Caja diaria: pensada primero para celular (botones grandes, barra de
+// cobro fija abajo), con la misma paleta verde/cobre del sitio.
+
+$superficie: rgba(244, 236, 221, 0.04);
+$borde: rgba(201, 138, 82, 0.22);
+$verde-ok: #6fcf97;
+$rojo: #eb7a62;
+$amarillo: #f2c46d;
+
 .pagina {
   @include contenedor;
-  padding-top: 2.5rem;
-  padding-bottom: 4rem;
-  max-width: 640px;
+  max-width: 980px;
+  padding-top: 2rem;
+  padding-bottom: 9rem; // espacio para la barra de cobro fija
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.pagina h1 {
-  @include titulo-seccion;
-  font-size: 2rem;
-  margin: 0 0 0.6rem;
+.pagina h2,
+.modal h2 {
+  font-family: $fuente-titulo;
+  letter-spacing: 0.06em;
+  font-size: 1.35rem;
+  font-weight: 400;
+  margin: 0;
+  color: $crema;
 }
 
-.ayuda {
+/* -------------------------------- Encabezado -------------------------------- */
+
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  h1 {
+    @include titulo-seccion;
+    font-size: clamp(2.4rem, 7vw, 3.2rem);
+    line-height: 1;
+    margin: 0;
+  }
+}
+
+.eyebrow {
+  font-family: $fuente-titulo;
+  color: $cobre;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin: 0 0 0.3rem;
+}
+
+.fecha {
   color: $gris-humo;
-  margin-bottom: 2rem;
-  line-height: 1.6;
+  margin: 0.3rem 0 0;
+  text-transform: capitalize;
 }
 
-.form {
+.encabezadoAcciones {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  border: 1px solid $borde;
+  color: $gris-humo;
+
+  &::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+}
+
+.estadoAbierta {
+  color: $verde-ok;
+  border-color: rgba(111, 207, 151, 0.4);
+  background: rgba(111, 207, 151, 0.08);
+}
+
+.estadoCerrada {
+  color: $cobre-claro;
+}
+
+.alerta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.9rem 1.1rem;
+  border-radius: 10px;
+  background: rgba(242, 196, 109, 0.1);
+  border: 1px solid rgba(242, 196, 109, 0.4);
+  color: $amarillo;
+
+  button {
+    background: none;
+    border: 1px solid currentColor;
+    color: inherit;
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    cursor: pointer;
+    font-family: inherit;
+  }
+}
+
+/* ------------------------------ Abrir caja card ------------------------------ */
+
+.abrirCard {
   @include tarjeta;
   display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  background: linear-gradient(135deg, rgba(201, 138, 82, 0.14), rgba(201, 138, 82, 0.03));
+
+  p {
+    color: $gris-humo;
+    margin: 0.4rem 0 0;
+  }
 }
 
-.grupo {
+/* ----------------------------------- KPIs ----------------------------------- */
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.kpi {
+  background: $superficie;
+  border: 1px solid $borde;
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  flex: 1;
+  gap: 0.25rem;
+  min-width: 0;
 
-  label {
-    font-size: 0.85rem;
+  span {
+    font-size: 0.78rem;
+    color: $gris-humo;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  strong {
+    font-size: 1.45rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: $crema;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  small {
+    color: $gris-humo;
+    font-size: 0.75rem;
+  }
+}
+
+.kpiDestacado {
+  grid-column: span 1;
+  background: linear-gradient(135deg, rgba(201, 138, 82, 0.28), rgba(201, 138, 82, 0.08));
+  border-color: rgba(201, 138, 82, 0.5);
+
+  strong {
+    color: $cobre-claro;
+    font-size: 1.8rem;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    grid-column: span 2;
+  }
+}
+
+.kpiAlerta strong {
+  color: $amarillo;
+}
+
+/* ---------------------------------- Paneles --------------------------------- */
+
+.panel {
+  background: $superficie;
+  border: 1px solid $borde;
+  border-radius: 14px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 1rem;
+  }
+}
+
+.panelTitulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.paso {
+  margin: 0.3rem 0 0;
+  font-size: 0.8rem;
+  color: $cobre-claro;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ayudaChica {
+  color: $gris-humo;
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.vacio {
+  color: $gris-humo;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* ------------------------------ Barberos (chips) ----------------------------- */
+
+.chips {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.2rem;
+  scrollbar-width: none;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-shrink: 0;
+  padding: 0.4rem 1rem 0.4rem 0.4rem;
+  border-radius: 999px;
+  border: 1px solid $borde;
+  background: rgba(21, 24, 21, 0.35);
+  color: $crema;
+  font-family: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: border-color $transicion, background $transicion;
+
+  &:hover {
+    border-color: $cobre;
+  }
+}
+
+.chipActivo {
+  background: $cobre;
+  border-color: $cobre;
+  color: $negro;
+  font-weight: 600;
+
+  .avatar {
+    background: $negro;
+    color: $cobre-claro;
+  }
+}
+
+.avatar {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: rgba(201, 138, 82, 0.2);
+  color: $cobre-claro;
+  font-weight: 600;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* ------------------------------ Grilla servicios ----------------------------- */
+
+.servicios {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.6rem;
+}
+
+.bloqueado {
+  opacity: 0.55;
+}
+
+.servicio {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.6rem;
+  min-height: 92px;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  border: 1px solid $borde;
+  background: linear-gradient(160deg, rgba(67, 83, 70, 0.55), rgba(35, 46, 39, 0.6));
+  color: $crema;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color $transicion, box-shadow $transicion;
+
+  &:hover:not(:disabled) {
+    border-color: $cobre;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.servicioAlt {
+  background: transparent;
+  border-style: dashed;
+}
+
+.servicioNombre {
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.servicioPrecio {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: $cobre-claro;
+  font-variant-numeric: tabular-nums;
+
+  .servicioAlt & {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: $gris-humo;
+  }
+}
+
+/* ------------------------------ Acciones de caja ----------------------------- */
+
+.accionesCaja {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+
+  &:empty {
+    display: none;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    button {
+      flex: 1;
+    }
+  }
+}
+
+.botonPrimario {
+  @include boton-primario;
+  border-radius: 10px;
+}
+
+.botonSecundario {
+  @include boton-secundario;
+  border-radius: 10px;
+}
+
+.botonFantasma {
+  background: none;
+  border: 1px solid $borde;
+  color: $cobre-claro;
+  border-radius: 999px;
+  padding: 0.45rem 0.95rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color $transicion;
+
+  &:hover {
+    border-color: $cobre;
+  }
+}
+
+.botonMini {
+  background: rgba(111, 207, 151, 0.12);
+  border: 1px solid rgba(111, 207, 151, 0.45);
+  color: $verde-ok;
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-family: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.botonBorrar {
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  color: $gris-humo;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+
+  &:hover {
+    color: $rojo;
+    background: rgba(235, 122, 98, 0.12);
+  }
+}
+
+/* ---------------------------------- Cierre ---------------------------------- */
+
+.cierreCard {
+  @include tarjeta;
+  padding: 1.25rem;
+
+  dl {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1rem 0 0;
+
+    @media (max-width: $breakpoint-mobile) {
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+  }
+
+  dt {
+    font-size: 0.78rem;
+    color: $gris-humo;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  dd {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.nota {
+  margin: 1rem 0 0;
+  color: $gris-humo;
+  font-style: italic;
+}
+
+.difCero {
+  color: $verde-ok;
+}
+
+.difPositiva {
+  color: $amarillo;
+}
+
+.difNegativa {
+  color: $rojo;
+}
+
+/* -------------------------------- Por barbero -------------------------------- */
+
+.barberos {
+  display: flex;
+  flex-direction: column;
+
+  li {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0;
+    border-top: 1px solid rgba(244, 236, 221, 0.06);
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+
+  strong {
+    font-variant-numeric: tabular-nums;
+    color: $cobre-claro;
+  }
+}
+
+.barberoNombre {
+  font-weight: 500;
+}
+
+.barberoCantidad {
+  color: $gris-humo;
+  font-size: 0.85rem;
+}
+
+/* -------------------------------- Movimientos -------------------------------- */
+
+.badgePendiente {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(242, 196, 109, 0.12);
+  color: $amarillo;
+  border: 1px solid rgba(242, 196, 109, 0.35);
+}
+
+.feed {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedItem {
+  display: grid;
+  grid-template-columns: 3.2rem 1fr auto auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0;
+  border-top: 1px solid rgba(244, 236, 221, 0.06);
+
+  &:first-child {
+    border-top: none;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    grid-template-columns: 2.8rem 1fr auto;
+
+    .feedAcciones {
+      grid-column: 2 / -1;
+      justify-content: flex-start;
+    }
+
+    .feedAcciones:empty {
+      display: none;
+    }
+  }
+}
+
+.feedHora {
+  font-size: 0.8rem;
+  color: $gris-humo;
+  font-variant-numeric: tabular-nums;
+}
+
+.feedInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.feedTitulo {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.feedMeta {
+  font-size: 0.8rem;
+  color: $gris-humo;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.etiquetaPendiente {
+  font-style: normal;
+  font-size: 0.7rem;
+  padding: 0.05rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(242, 196, 109, 0.15);
+  color: $amarillo;
+}
+
+.feedMonto {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.feedSalida .feedMonto {
+  color: $rojo;
+}
+
+.feedAcciones {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.3rem;
+}
+
+/* --------------------------------- Historial --------------------------------- */
+
+.tablaScroll {
+  overflow-x: auto;
+  margin: 0 -0.25rem;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  min-width: 540px;
+
+  th {
+    text-align: left;
+    font-weight: 400;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $gris-humo;
+    padding: 0.5rem 0.25rem;
+    border-bottom: 1px solid $borde;
+  }
+
+  td {
+    padding: 0.65rem 0.25rem;
+    border-bottom: 1px solid rgba(244, 236, 221, 0.06);
+  }
+
+  tbody tr {
+    cursor: pointer;
+    transition: background $transicion;
+
+    &:hover {
+      background: rgba(201, 138, 82, 0.06);
+    }
+  }
+}
+
+.filaActiva {
+  background: rgba(201, 138, 82, 0.1);
+}
+
+.linkDia {
+  background: none;
+  border: none;
+  color: $cobre-claro;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+  cursor: pointer;
+}
+
+.puntoAbierta {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-left: 0.4rem;
+  border-radius: 50%;
+  background: $verde-ok;
+  vertical-align: middle;
+}
+
+/* ------------------------- Barra de cobro (fija abajo) ------------------------ */
+
+.barraCobro {
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  width: min(940px, calc(100% - 1.5rem));
+  z-index: 60;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.9rem 1rem;
+  border-radius: 16px;
+  background: rgba(21, 24, 21, 0.92);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(201, 138, 82, 0.5);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  animation: subir 0.25s ease-out;
+
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: 1fr auto;
+
+    .barraBotones {
+      grid-column: 1 / -1;
+    }
+  }
+}
+
+@keyframes subir {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 16px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.barraInfo {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.barraTitulo {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.barraMeta {
+  font-size: 0.8rem;
+  color: $gris-humo;
+}
+
+.barraMonto,
+.inputPesos {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(244, 236, 221, 0.06);
+  border: 1px solid $borde;
+  border-radius: 10px;
+  padding: 0 0.75rem;
+
+  &:focus-within {
+    border-color: $cobre;
+  }
+
+  span {
     color: $cobre-claro;
   }
 
-  input,
-  select {
-    background: rgba(21, 24, 21, 0.6);
-    border: 1px solid rgba(201, 138, 82, 0.35);
-    border-radius: $radio-borde;
-    padding: 0.7rem 0.9rem;
+  input {
+    width: 7rem;
+    background: none;
+    border: none;
     color: $crema;
+    font-family: inherit;
+    font-size: 1.15rem;
+    font-weight: 600;
+    padding: 0.6rem 0;
+    font-variant-numeric: tabular-nums;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.inputPesos input {
+  width: 100%;
+}
+
+.barraBotones {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+
+  .botonEfectivo,
+  .botonDigital {
+    flex: 1;
+  }
+}
+
+.botonEfectivo,
+.botonDigital {
+  padding: 0.85rem 1.2rem;
+  border-radius: 10px;
+  border: none;
+  font-family: $fuente-titulo;
+  letter-spacing: 0.06em;
+  font-size: 1.05rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.15s ease, filter $transicion;
+
+  &:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+
+  &:hover:not(:disabled) {
+    filter: brightness(1.08);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.botonEfectivo {
+  background: $verde-ok;
+  color: $negro;
+}
+
+.botonDigital {
+  background: $cobre;
+  color: $negro;
+}
+
+.botonCancelar {
+  width: 2.4rem;
+  height: 2.4rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid $borde;
+  background: none;
+  color: $gris-humo;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+
+  &:hover {
+    color: $crema;
+    border-color: $cobre;
+  }
+}
+
+.toast {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  max-width: calc(100% - 2rem);
+  padding: 0.75rem 1.2rem;
+  border-radius: 999px;
+  background: $crema;
+  color: $negro;
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  animation: aparecer 0.2s ease-out;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -8px);
+  }
+}
+
+/* ---------------------------------- Modales --------------------------------- */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: rgba(9, 11, 9, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: aparecerOverlay 0.15s ease-out;
+
+  @media (max-width: $breakpoint-mobile) {
+    align-items: flex-end;
+    padding: 0;
+  }
+}
+
+@keyframes aparecerOverlay {
+  from {
+    opacity: 0;
+  }
+}
+
+.modal {
+  width: min(440px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: $verde-profundo;
+  border: 1px solid rgba(201, 138, 82, 0.4);
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: $breakpoint-mobile) {
+    border-radius: 18px 18px 0 0;
+    padding-bottom: 1.75rem;
+  }
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h3 {
+    margin: 0;
+    font-family: $fuente-titulo;
+    letter-spacing: 0.06em;
+    font-weight: 400;
+    font-size: 1.4rem;
+  }
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modalTexto {
+  margin: 0;
+  color: $crema;
+  line-height: 1.5;
+
+  small {
+    color: $gris-humo;
+  }
+}
+
+.modalBotones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  > span {
+    font-size: 0.8rem;
+    color: $cobre-claro;
+  }
+
+  > input {
+    background: rgba(244, 236, 221, 0.06);
+    border: 1px solid $borde;
+    border-radius: 10px;
+    padding: 0.75rem 0.9rem;
+    color: $crema;
+    font-family: inherit;
+    font-size: 1rem;
 
     &:focus {
       outline: none;
@@ -53,118 +985,189 @@
   }
 }
 
-.fila {
+.esperado {
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1rem;
+  border-radius: 12px;
+  background: rgba(201, 138, 82, 0.1);
+
+  span {
+    color: $gris-humo;
+    font-size: 0.9rem;
+  }
+
+  strong {
+    font-size: 1.5rem;
+    color: $cobre-claro;
+    font-variant-numeric: tabular-nums;
+  }
 }
 
-.acciones {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-top: 0.5rem;
+.alertaChica {
+  margin: 0;
+  font-size: 0.85rem;
+  color: $amarillo;
+}
+
+.difGrande {
+  margin: 0;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.segmentado {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0.25rem;
+  border-radius: 10px;
+  background: rgba(21, 24, 21, 0.5);
 
   button {
-    flex: 1;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 8px;
+    background: none;
+    color: $gris-humo;
+    font-family: inherit;
+    cursor: pointer;
   }
 }
 
-.acciones button:first-child {
-  @include boton-secundario;
+.segmentoActivo {
+  background: $cobre !important;
+  color: $negro !important;
+  font-weight: 600;
 }
 
-.botonQr {
-  @include boton-primario;
+.qr {
+  align-self: center;
+  border-radius: 12px;
+  background: $blanco;
+  padding: 0.5rem;
 }
 
-.mensaje {
-  margin-top: 1.2rem;
-  color: $cobre-claro;
+.buscador {
+  background: rgba(244, 236, 221, 0.06);
+  border: 1px solid $borde;
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+  color: $crema;
+  font-family: inherit;
+
+  &:focus {
+    outline: none;
+    border-color: $cobre;
+  }
 }
 
-.qrBox {
-  @include tarjeta;
-  margin-top: 1.5rem;
-  text-align: center;
+.listaProductos {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.8rem;
+  gap: 0.4rem;
+  max-height: 50vh;
+  overflow-y: auto;
 
-  img {
-    border-radius: $radio-borde;
-    background: $blanco;
-    padding: 0.6rem;
-  }
-
-  a {
-    color: $cobre;
-    border-bottom: 1px solid $cobre;
-  }
-}
-
-.nota {
-  color: $gris-humo;
-  font-size: 0.82rem;
-  max-width: 380px;
-}
-
-.marcarManual {
-  @include boton-secundario;
-  margin-top: 0.5rem;
-}
-
-.registro {
-  margin-top: 2.6rem;
-  padding-top: 1.8rem;
-  border-top: 1px solid rgba(201, 138, 82, 0.15);
-
-  h2 {
-    font-family: $fuente-titulo;
-    letter-spacing: 0.04em;
-    font-size: 1.2rem;
-    margin: 0 0 0.4rem;
-  }
-}
-
-.ayudaChica {
-  color: $gris-humo;
-  font-size: 0.85rem;
-  margin-bottom: 1.2rem;
-}
-
-.tablaRegistro {
-  width: 100%;
-  border-collapse: collapse;
-
-  th,
-  td {
+  button {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0.9rem;
+    border-radius: 10px;
+    border: 1px solid $borde;
+    background: rgba(244, 236, 221, 0.03);
+    color: $crema;
+    font-family: inherit;
     text-align: left;
-    padding: 0.6rem 0.7rem;
-    border-bottom: 1px solid rgba(201, 138, 82, 0.12);
-    font-size: 0.85rem;
-  }
+    cursor: pointer;
 
-  th {
-    color: $cobre-claro;
-    font-family: $fuente-titulo;
-    letter-spacing: 0.04em;
-    font-weight: 400;
-    font-size: 0.78rem;
+    &:hover:not(:disabled) {
+      border-color: $cobre;
+    }
+
+    &:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    small {
+      color: $gris-humo;
+    }
+
+    strong {
+      color: $cobre-claro;
+      font-variant-numeric: tabular-nums;
+    }
   }
 }
 
-.botonBorrar {
-  background: none;
-  border: 1px solid rgba(255, 139, 122, 0.4);
-  color: #ff9d84;
-  border-radius: 4px;
-  padding: 0.3rem 0.7rem;
-  font-size: 0.78rem;
-  cursor: pointer;
+.contador {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
 
-  &:hover {
-    background: rgba(255, 139, 122, 0.1);
-    border-color: #ff9d84;
+  span {
+    font-size: 2rem;
+    font-weight: 600;
+    min-width: 3rem;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+
+  button {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: 1px solid $cobre;
+    background: none;
+    color: $cobre-claro;
+    font-size: 1.4rem;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.listaBarberos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  li {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.4rem 0.5rem;
+    border-radius: 10px;
+    background: rgba(244, 236, 221, 0.04);
+  }
+}
+
+.agregarBarbero {
+  display: flex;
+  gap: 0.5rem;
+
+  input {
+    flex: 1;
+    background: rgba(244, 236, 221, 0.06);
+    border: 1px solid $borde;
+    border-radius: 10px;
+    padding: 0.7rem 0.9rem;
+    color: $crema;
+    font-family: inherit;
+
+    &:focus {
+      outline: none;
+      border-color: $cobre;
+    }
   }
 }
